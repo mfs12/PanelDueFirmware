@@ -24,10 +24,10 @@ namespace MessageLog
 	void UpdateMessages(bool all);
 
 	// Add a message to the end of the list immediately
-	void AppendMessage(const char* data);
+	void AppendMessagePuts(const char* data);
 
 	// Add a message via printf to the end of the list immediately (mainly for debugging)
-	void AppendMessageF(const char* format, ...) __attribute__((format (printf, 1, 0)));
+	void AppendMessage(const char* format, ...) __attribute__((format (printf, 1, 0)));
 
 	// Save a message for possible display later
 	void SaveMessage(const char* data);

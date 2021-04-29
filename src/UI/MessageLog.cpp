@@ -107,7 +107,7 @@ namespace MessageLog
 
 	// Add a message to the end of the list
 	// Call this only with a non empty message having no leading whitespace
-	void AppendMessage(const char* _ecv_array data)
+	void AppendMessagePuts(const char* _ecv_array data)
 	{
 		bool split;
 		unsigned int numLines = 0;
@@ -149,14 +149,14 @@ namespace MessageLog
 		UpdateMessages(true);
 	}
 
-	void AppendMessageF(const char* fmt, ...)
+	void AppendMessage(const char* fmt, ...)
 	{
 		String<256> formatString;
 		va_list vargs;
 		va_start(vargs, fmt);
 		formatString.vcatf(fmt, vargs);
 		va_end(vargs);
-		AppendMessage(formatString.c_str());
+		AppendMessagePuts(formatString.c_str());
 	}
 
 	// Save a message for possible display later
@@ -180,7 +180,7 @@ namespace MessageLog
 			// Discard empty messages
 			if (*msg != 0)
 			{
-				AppendMessage(msg);
+				AppendMessagePuts(msg);
 				UI::NewResponseReceived(msg);
 			}
 			newMessage.Clear();
