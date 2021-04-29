@@ -12,7 +12,7 @@
 #include <General/SafeVsnprintf.h>
 #define DEBUG (0)
 #if DEBUG
-# include "MessageLog.hpp"
+# include "UI/MessageLog.hpp"
 #endif
 
 const size_t MaxArrayNesting = 4;
@@ -189,7 +189,7 @@ namespace SerialIo
 	static void RemoveLastId()
 	{
 #if DEBUG
-		MessageLog::AppendMessage(150, "RemoveLastId: %s, len: %d", fieldId.c_str(), fieldId.strlen());
+		MessageLog::AppendMessage("RemoveLastId: %s, len: %d", fieldId.c_str(), fieldId.strlen());
 #endif
 		size_t index = fieldId.strlen();
 		while (index != 0 && fieldId[index - 1] != '^' && fieldId[index - 1] != ':')
@@ -198,7 +198,7 @@ namespace SerialIo
 		}
 		fieldId.Truncate(index);
 #if DEBUG
-		MessageLog::AppendMessage(150, "RemoveLastId: %s, len: %d", fieldId.c_str(), fieldId.strlen());
+		MessageLog::AppendMessage("RemoveLastId: %s, len: %d", fieldId.c_str(), fieldId.strlen());
 #endif
 	}
 
