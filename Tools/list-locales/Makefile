@@ -23,7 +23,7 @@ INSTALL    = install
 C_STD      = gnu99
 DEPEND     = -E -MD -MP -MF
 
-CPP_STD    =
+CPP_STD    = gnu++17
 
 
 INCLUDE    = -I./ -I../../src
@@ -31,7 +31,7 @@ OPTIMIZE   =
 #WARN       = -W -Wall -Wstrict-prototypes -Wundef
 
 CFLAGS     = -std=$(C_STD) $(OPTIMIZE) $(WARN) $(INCLUDE) -g
-CPPFLAGS     = $(OPTIMIZE) $(WARN) $(INCLUDE) -g
+CPPFLAGS   = -std=$(CPP_STD) $(OPTIMIZE) $(WARN) $(INCLUDE) -g
 #CFLAGS    += -DRBP_UPDATE_IMAGE_SMALL=1
 LDFLAGS    =
 
