@@ -1,0 +1,68 @@
+#!/usr/bin/bash
+
+MAKE_OPTIONS=-j11
+
+#set -x
+
+DBG=1
+
+function err() {
+  echo "Error:" $@ >&2
+}
+
+function warn() {
+  echo "Warning:" $@ >&2
+}
+
+function info() {
+  echo "Info:" $@ >&1
+}
+
+function dbg() {
+  if test $DBG -eq 0; then
+    return
+  fi
+
+  echo "Dbg:" $@ >&1
+}
+
+RELEASES=$1
+VERSION=$2
+shift 2
+
+if ! mkdir -p ${RELEASES}; then
+  err "failed to create release folder:" ${RELEASES}
+  exit 1
+fi
+
+if test ${VERSION} -z; then
+  err "missing version string"
+  exit 1
+fi
+
+dbg "args" $#
+if test $# -ge 1; then
+  DEVICES=$@
+else
+  DEVICES="v2-4.3 v2-5.0 v2-7.0 v2-7.0c v3-4.3 v3-5.0 v3-7.0 v3-7.0c 5.0i 7.0i"
+fi
+
+info "Using releases folder:" "${RELEASES}"
+info "Building releases for devices: " "${DEVICES}"
+
+for device in ${DEVICES}; do
+  for name in paneldue paneldue-logo; do
+    info "Building:" "$name-$device"
+    release_name="${name/paneldue/PanelDueFirmware}-${VERSION}"
+
+    cmake -B build/$device -DDEVICE=$device && \
+    make ${MAKE_OPTIONS} -C build/$device all && \
+    cp build/$device/$name.bin ${RELEASES}/$release_name-$device.bin
+
+    if test $? -ne 0; then
+      err "failed to build device:" "${device}"
+    fi
+  done;
+done >/dev/null
+
+info "build successfull"
