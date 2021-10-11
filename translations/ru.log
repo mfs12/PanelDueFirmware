@@ -1,97 +1,97 @@
 *****: ru
-orig->languageName: 'en', 'ru'
-orig->control: 'Control', 'Контроль'
-orig->print: 'Print', 'Печать'
-orig->status: 'Status', 'Статус'
-orig->console: 'Console', 'Консоль'
-orig->setup: 'Setup', 'Настройка'
-orig->current: 'Current°C', 'Текущий°C'
-orig->active: 'Active°C', 'Активный°C'
-orig->standby: 'Standby°C', 'Ожидание°C'
-orig->move: 'Move', 'Движение'
-orig->extrusion: 'Extrusion', 'Экструзия'
-orig->macro: 'Macro', 'Макрос'
-orig->stop: 'STOP', 'СТОП'
-orig->extruderPercent: 'Extruder%', 'Экструдер%'
-orig->speed: 'Speed ', 'Скорость '
-orig->fan: 'Fan ', 'обдув '
-orig->timeRemaining: 'Time left: ', 'Оставшееся время: '
-orig->simulated: 'sim'd ', 'Файл '
-orig->file: 'file ', ', филамент '
-orig->filament: 'filament ', ', слой '
-orig->slicer: 'slicer ', 'Слайсер '
-orig->notAvailable: 'n/a', '-'
-orig->pause: 'Pause', 'Пауза'
-orig->babystep: 'Baby step', 'мелкий шаг'
-orig->resume: 'Resume', 'Резюме'
-orig->cancel: 'Cancel', 'отмена'
-orig->reprint: 'Print again', 'печать заново'
-orig->resimulate: 'Simulate again', 'снова смоделировать'
-orig->set: 'Set', 'установить'
-orig->volume: 'Volume ', 'Громкость '
-orig->calibrateTouch: 'Calibrate touch', 'Калибровка экрана'
-orig->mirrorDisplay: 'Mirror display', 'Отзеркаленый дисплей'
-orig->invertDisplay: 'Invert display', 'Перевёрнутый дисплей'
-orig->theme: 'Theme', 'Тема'
-orig->brightnessDown: 'Brightness -', 'Яркость -'
-orig->brightnessUp: 'Brightness +', 'Яркость +'
-orig->saveSettings: 'Save settings', 'Сохранить настройки'
-orig->clearSettings: 'Clear settings', 'Скинуть настройки'
-orig->saveAndRestart: 'Save & Restart', 'Сохранить и перезапустить'
-orig->infoTimeout: 'Info timeout ', 'Время ожидания информации '
-orig->screensaverAfter: 'Screensaver ', 'Заставка '
-orig->babystepAmount: 'Babystep ', 'Мелкий шаг '
-orig->feedrate: 'Feedrate ', 'Скорость подачи '
-orig->confirmFactoryReset: 'Confirm factory reset', 'Подтвердить сброс настроек'
-orig->confirmFileDelete: 'Confirm file delete', 'Подтвердить удаление файла'
-orig->areYouSure: 'Are you sure?', 'Вы уверены?'
-orig->touchTheSpot: 'Touch the spot', 'Дотронуться до точки'
-orig->moveHead: 'Move head', 'Двигать кареткой'
-orig->extrusionAmount: 'Extrusion amount (mm)', 'Количество выдавливания (мм)'
-orig->extrusionSpeed: 'Speed (mm/s)', 'Скорость (мм / с)'
-orig->extrude: 'Extrude', 'Экструдировать'
-orig->retract: 'Retract', 'Ретракт'
-orig->babyStepping: 'Baby stepping', 'Мелкий шаг'
-orig->currentZoffset: 'Current Z offset: ', 'Текущее смещение по оси Z: '
-orig->message: 'Message', 'Сообщение'
-orig->messages: 'Messages', 'Сообщение'
-orig->firmwareVersion: 'Panel Due firmware version ', 'Версия прошивки Panel Due '
-orig->response: 'Response', 'Ответ'
-orig->filesOnCard: 'Files on card ', 'Файлы на карте '
-orig->macros: 'Macros', 'Макросы'
-orig->error: 'Error ', 'Ошибка '
-orig->accessingSdCard: ' accessing SD card', 'доступ к SD-карте'
-orig->fileName: 'Filename: ', 'Имя файла: '
-orig->fileSize: 'Size: ', 'Размер: '
-orig->layerHeight: 'Layer height: ', 'Высота слоя: '
-orig->objectHeight: 'Object height: ', 'Высота объекта: '
-orig->filamentNeeded: 'Filament needed: ', 'Нужен филамент: '
-orig->generatedBy: 'Sliced by: ', 'от слайсено: '
-orig->lastModified: 'Last modified: ', 'Последнее изменение: '
-orig->estimatedPrintTime: 'Estimated print time: ', 'Расчетное время печати: '
-orig->simulatedPrintTime: 'Simulated print time: ', 'Время имитации печати: '
-orig->simulate: 'Simulate', 'Симуляция '
+orig->languageName: 'en', 'ru' l: 2/2
+orig->control: 'Control', 'Контроль' l: 7/16
+orig->print: 'Print', 'Печать' l: 5/12
+orig->status: 'Status', 'Статус' l: 6/12
+orig->console: 'Console', 'Консоль' l: 7/14
+orig->setup: 'Setup', 'Настройки' l: 5/18
+orig->current: 'Current°C', 'Текущая°C' l: 12/19
+orig->active: 'Active°C', 'Заданная°C' l: 11/21
+orig->standby: 'Standby°C', 'Преднагрев°C' l: 12/25
+orig->move: 'Move', 'Движения' l: 4/16
+orig->extrusion: 'Extrusion', 'Экструзия' l: 9/18
+orig->macro: 'Macro', 'Макрос' l: 5/12
+orig->stop: 'STOP', 'СТОП' l: 4/8
+orig->extruderPercent: 'Extruder%', 'Экструзия%' l: 11/21
+orig->speed: 'Speed ', 'Скорость ' l: 6/17
+orig->fan: 'Fan ', 'обдув ' l: 4/11
+orig->timeRemaining: 'Time left: ', 'Оставшееся время: ' l: 11/33
+orig->simulated: 'sim'd ', 'Файл ' l: 6/9
+orig->file: 'file ', ', Файл ' l: 5/11
+orig->filament: 'filament ', ', Филамент ' l: 9/19
+orig->slicer: 'slicer ', 'Слайсер ' l: 7/15
+orig->notAvailable: 'n/a', '-' l: 3/1
+orig->pause: 'Pause', 'Пауза' l: 5/10
+orig->babystep: 'Baby step', 'Высота слоя' l: 9/21
+orig->resume: 'Resume', 'Продолжить' l: 6/20
+orig->cancel: 'Cancel', 'Oтмена' l: 6/11
+orig->reprint: 'Print again', 'Повтор печати' l: 11/25
+orig->resimulate: 'Simulate again', 'Повтор моделирования' l: 14/39
+orig->set: 'Set', 'Установить' l: 3/20
+orig->volume: 'Volume ', 'Громкость ' l: 7/19
+orig->calibrateTouch: 'Calibrate touch', 'Калибровка экрана' l: 15/33
+orig->mirrorDisplay: 'Mirror display', 'Отзеркаленый дисплей' l: 14/39
+orig->invertDisplay: 'Invert display', 'Перевёрнутый дисплей' l: 14/39
+orig->theme: 'Theme', 'Тема' l: 5/8
+orig->brightnessDown: 'Brightness -', 'Яркость -' l: 12/16
+orig->brightnessUp: 'Brightness +', 'Яркость +' l: 12/16
+orig->saveSettings: 'Save settings', 'Сохранить настройки' l: 13/37
+orig->clearSettings: 'Clear settings', 'Сбросить настройки' l: 14/35
+orig->saveAndRestart: 'Save & Restart', 'Сохранить и перезапустить' l: 14/48
+orig->infoTimeout: 'Info timeout ', 'Ожидание информации ' l: 13/38
+orig->screensaverAfter: 'Screensaver ', 'Заставка ' l: 12/17
+orig->babystepAmount: 'Babystep ', 'Мелкий шаг ' l: 9/20
+orig->feedrate: 'Feedrate ', 'Скорость подачи ' l: 9/30
+orig->confirmFactoryReset: 'Confirm factory reset', 'Подтвердить сброс настроек' l: 21/50
+orig->confirmFileDelete: 'Confirm file delete', 'Подтвердить удаление файла' l: 19/50
+orig->areYouSure: 'Are you sure?', 'Вы уверены?' l: 13/20
+orig->touchTheSpot: 'Touch the spot', 'Дотронуться до точки' l: 14/38
+orig->moveHead: 'Move head', 'Двигать экструдером' l: 9/37
+orig->extrusionAmount: 'Extrusion amount (mm)', 'Количество экструзии (мм)' l: 21/46
+orig->extrusionSpeed: 'Speed (mm/s)', 'Скорость (мм / с)' l: 12/28
+orig->extrude: 'Extrude', 'Экструдировать' l: 7/28
+orig->retract: 'Retract', 'Ретракт' l: 7/14
+orig->babyStepping: 'Baby stepping', 'Высота слоя' l: 13/21
+orig->currentZoffset: 'Current Z offset: ', 'Текущее смещение по оси Z: ' l: 18/47
+orig->message: 'Message', 'Сообщение' l: 7/18
+orig->messages: 'Messages', 'Сообщения' l: 8/18
+orig->firmwareVersion: 'Panel Due firmware version ', 'Версия прошивки Panel Due ' l: 27/40
+orig->response: 'Response', 'Ответ' l: 8/10
+orig->filesOnCard: 'Files on card ', 'Файлы на карте ' l: 14/27
+orig->macros: 'Macros', 'Макросы' l: 6/14
+orig->error: 'Error ', 'Ошибка ' l: 6/13
+orig->accessingSdCard: ' accessing SD card', 'доступ к SD-карте' l: 18/29
+orig->fileName: 'Filename: ', 'Имя файла: ' l: 10/19
+orig->fileSize: 'Size: ', 'Размер: ' l: 6/14
+orig->layerHeight: 'Layer height: ', 'Высота слоя: ' l: 14/23
+orig->objectHeight: 'Object height: ', 'Высота объекта: ' l: 15/29
+orig->filamentNeeded: 'Filament needed: ', 'Нет филамента: ' l: 17/27
+orig->generatedBy: 'Sliced by: ', 'Нарезано: ' l: 11/18
+orig->lastModified: 'Last modified: ', 'Последнее изменение: ' l: 15/39
+orig->estimatedPrintTime: 'Estimated print time: ', 'Расчетное время печати: ' l: 22/44
+orig->simulatedPrintTime: 'Simulated print time: ', 'Время имитации печати: ' l: 22/42
+orig->simulate: 'Simulate', 'Симуляция ' l: 8/19
 Status Values:
-orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Подключение'
-orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Бездействие'
-orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Печать'
-orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Остановлен'
-orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Запуск'
-orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Приостановлено'
-orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Возобновление'
-orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Загрузка прошивки'
-orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Смена инструмента'
-orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Симуляция'
-orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'Ожидать'
-orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'Инициализация'
+orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Подключение' l: 10/22
+orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Ожидание' l: 4/16
+orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Печать' l: 8/12
+orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Остановлен' l: 6/20
+orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Запуск' l: 11/12
+orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Пауза' l: 6/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Продолжить' l: 8/20
+orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Загрузка прошивки' l: 15/33
+orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Смена инструмента' l: 13/33
+orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Симуляция' l: 10/18
+orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'Отмена' l: 3/12
+orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'Инициализация' l: 10/26
 Colour Scheme Names:
-orig->colourSchemeNames[j]: 'Light theme', 'Светлая тема'
-orig->colourSchemeNames[j]: 'Dark theme 1', 'Тёмная тема 1'
-orig->colourSchemeNames[j]: 'Dark theme 2', 'Тёмная тема 2'
+orig->colourSchemeNames[j]: 'Light theme', 'Светлая тема' l: 11/23
+orig->colourSchemeNames[j]: 'Dark theme 1', 'Тёмная тема 1' l: 12/23
+orig->colourSchemeNames[j]: 'Dark theme 2', 'Тёмная тема 2' l: 12/23
 Display Dimming Names:
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Никогда не тускнеет'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Всегда тусклый'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Уменьшить при простое'
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Никогда не тускнеет' l: 9/36
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Всегда тусклый' l: 10/27
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Уменьшить при ожидании' l: 11/42
 Heater Combine Type Names:
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Обогреватели не совмещенные'
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Обогреватели комбинированные'
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Нагреватели не комб.' l: 16/37
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Нагреватели комб.' l: 13/32
