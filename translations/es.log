@@ -1,97 +1,97 @@
 *****: es
-orig->languageName: 'en', 'es'
-orig->control: 'Control', 'Control'
-orig->print: 'Print', 'Imprimir'
-orig->status: 'Status', 'Estatus'
-orig->console: 'Console', 'Consola'
-orig->setup: 'Setup', 'Configuración'
-orig->current: 'Current°C', 'Actual°C'
-orig->active: 'Active°C', 'Activo°C'
-orig->standby: 'Standby°C', 'Esperando°C'
-orig->move: 'Move', 'Mover'
-orig->extrusion: 'Extrusion', 'Extrusión'
-orig->macro: 'Macro', 'Macro'
-orig->stop: 'STOP', 'PARADA'
-orig->extruderPercent: 'Extruder%', 'Extrusor%'
-orig->speed: 'Speed ', 'Veloc. '
-orig->fan: 'Fan ', 'Ventil. '
-orig->timeRemaining: 'Time left: ', 'Tiempo restante: '
-orig->simulated: 'sim'd ', 'simul. '
-orig->file: 'file ', 'archivo '
-orig->filament: 'filament ', 'filamento '
-orig->slicer: 'slicer ', 'slicer '
-orig->notAvailable: 'n/a', 'n/d'
-orig->pause: 'Pause', 'Pausa'
-orig->babystep: 'Baby step', 'Micro paso'
-orig->resume: 'Resume', 'Resumir'
-orig->cancel: 'Cancel', 'Cancelar'
-orig->reprint: 'Print again', 'Print again'
-orig->resimulate: 'Simulate again', 'Simulate again'
-orig->set: 'Set', 'Fijar'
-orig->volume: 'Volume ', 'Volumen '
-orig->calibrateTouch: 'Calibrate touch', 'Calibrar toque'
-orig->mirrorDisplay: 'Mirror display', 'Espejar pantalla'
-orig->invertDisplay: 'Invert display', 'Invertir pantalla'
-orig->theme: 'Theme', 'Tema'
-orig->brightnessDown: 'Brightness -', 'Brillo -'
-orig->brightnessUp: 'Brightness +', 'Brillo +'
-orig->saveSettings: 'Save settings', 'Guardar parámetros'
-orig->clearSettings: 'Clear settings', 'Borrar parámetros'
-orig->saveAndRestart: 'Save & Restart', 'Guardar y Reiniciar'
-orig->infoTimeout: 'Info timeout ', 'Info timeout '
-orig->screensaverAfter: 'Screensaver ', 'Screensaver '
-orig->babystepAmount: 'Babystep ', 'Babystep '
-orig->feedrate: 'Feedrate ', 'Feedrate '
-orig->confirmFactoryReset: 'Confirm factory reset', 'Confirma restablecimiento de fábrica'
-orig->confirmFileDelete: 'Confirm file delete', 'Confirma borrar archivo'
-orig->areYouSure: 'Are you sure?', 'Está seguro?'
-orig->touchTheSpot: 'Touch the spot', 'Tocar el punto'
-orig->moveHead: 'Move head', 'Mover cabezal'
-orig->extrusionAmount: 'Extrusion amount (mm)', 'Cantidad de extrusión (mm)'
-orig->extrusionSpeed: 'Speed (mm/s)', 'Velocidad (mm/s)'
-orig->extrude: 'Extrude', 'Extruir'
-orig->retract: 'Retract', 'Retraer'
-orig->babyStepping: 'Baby stepping', 'Micro paso'
-orig->currentZoffset: 'Current Z offset: ', 'Separación actual de Z: '
-orig->message: 'Message', 'Mensaje'
-orig->messages: 'Messages', 'Mensajes'
-orig->firmwareVersion: 'Panel Due firmware version ', 'Panel Due versión de firmware '
-orig->response: 'Response', 'Respuesta'
-orig->filesOnCard: 'Files on card ', 'Archivos en la tarjeta '
-orig->macros: 'Macros', 'Macros'
-orig->error: 'Error ', 'Error '
-orig->accessingSdCard: ' accessing SD card', ' accediendo a la tarjeta SD'
-orig->fileName: 'Filename: ', 'Nombre de archivo: '
-orig->fileSize: 'Size: ', 'Tamaño: '
-orig->layerHeight: 'Layer height: ', 'Altura de capa: '
-orig->objectHeight: 'Object height: ', 'Altura de objeto: '
-orig->filamentNeeded: 'Filament needed: ', 'Filamento necesario: '
-orig->generatedBy: 'Sliced by: ', 'Procesado por: '
-orig->lastModified: 'Last modified: ', 'Última modificación: '
-orig->estimatedPrintTime: 'Estimated print time: ', 'Tiempo estimado de impresión: '
-orig->simulatedPrintTime: 'Simulated print time: ', 'Tiempo de impresión simulado: '
-orig->simulate: 'Simulate', 'Simular'
+orig->languageName: 'en', 'es' l: 2/2
+orig->control: 'Control', 'Control' l: 7/7
+orig->print: 'Print', 'Imprimir' l: 5/8
+orig->status: 'Status', 'Estado' l: 6/6
+orig->console: 'Console', 'Consola' l: 7/7
+orig->setup: 'Setup', 'Configuración' l: 5/14
+orig->current: 'Current°C', 'Actual°C' l: 12/11
+orig->active: 'Active°C', 'Activo°C' l: 11/11
+orig->standby: 'Standby°C', 'Inactivo°C' l: 12/13
+orig->move: 'Move', 'Mover' l: 4/5
+orig->extrusion: 'Extrusion', 'Extrusión' l: 9/10
+orig->macro: 'Macro', 'Macro' l: 5/5
+orig->stop: 'STOP', 'PARADA' l: 4/6
+orig->extruderPercent: 'Extruder%', 'Extrusor%' l: 11/11
+orig->speed: 'Speed ', 'Veloc. ' l: 6/7
+orig->fan: 'Fan ', 'Ventil. ' l: 4/8
+orig->timeRemaining: 'Time left: ', 'Tiempo restante: ' l: 11/17
+orig->simulated: 'sim'd ', 'simul. ' l: 6/7
+orig->file: 'file ', 'archivo ' l: 5/8
+orig->filament: 'filament ', 'filamento ' l: 9/10
+orig->slicer: 'slicer ', 'laminador ' l: 7/10
+orig->notAvailable: 'n/a', 'n/d' l: 3/3
+orig->pause: 'Pause', 'Pausa' l: 5/5
+orig->babystep: 'Baby step', 'Micro paso' l: 9/10
+orig->resume: 'Resume', 'Reanudar' l: 6/8
+orig->cancel: 'Cancel', 'Cancelar' l: 6/8
+orig->reprint: 'Print again', 'Imprimir de nuevo' l: 11/17
+orig->resimulate: 'Simulate again', 'Simular de nuevo' l: 14/16
+orig->set: 'Set', 'Fijar' l: 3/5
+orig->volume: 'Volume ', 'Volumen ' l: 7/8
+orig->calibrateTouch: 'Calibrate touch', 'Calibrar toque' l: 15/14
+orig->mirrorDisplay: 'Mirror display', 'Espejar pantalla' l: 14/16
+orig->invertDisplay: 'Invert display', 'Invertir pantalla' l: 14/17
+orig->theme: 'Theme', 'Tema' l: 5/4
+orig->brightnessDown: 'Brightness -', 'Brillo -' l: 12/8
+orig->brightnessUp: 'Brightness +', 'Brillo +' l: 12/8
+orig->saveSettings: 'Save settings', 'Guardar parámetros' l: 13/19
+orig->clearSettings: 'Clear settings', 'Borrar parámetros' l: 14/18
+orig->saveAndRestart: 'Save & Restart', 'Guardar y Reiniciar' l: 14/19
+orig->infoTimeout: 'Info timeout ', 'Info timeout ' l: 13/13
+orig->screensaverAfter: 'Screensaver ', 'Salvapantallas ' l: 12/15
+orig->babystepAmount: 'Babystep ', 'Micropaso ' l: 9/10
+orig->feedrate: 'Feedrate ', 'Vel. avance' l: 9/11
+orig->confirmFactoryReset: 'Confirm factory reset', 'Confirma restablecimiento de fábrica' l: 21/37
+orig->confirmFileDelete: 'Confirm file delete', 'Confirma borrar archivo' l: 19/23
+orig->areYouSure: 'Are you sure?', 'Está seguro?' l: 13/13
+orig->touchTheSpot: 'Touch the spot', 'Toca el punto' l: 14/13
+orig->moveHead: 'Move head', 'Mover cabezal' l: 9/13
+orig->extrusionAmount: 'Extrusion amount (mm)', 'Cantidad de extrusión (mm)' l: 21/27
+orig->extrusionSpeed: 'Speed (mm/s)', 'Velocidad (mm/s)' l: 12/16
+orig->extrude: 'Extrude', 'Extruir' l: 7/7
+orig->retract: 'Retract', 'Retraer' l: 7/7
+orig->babyStepping: 'Baby stepping', 'Micro pasos' l: 13/11
+orig->currentZoffset: 'Current Z offset: ', 'Separación actual de Z: ' l: 18/25
+orig->message: 'Message', 'Mensaje' l: 7/7
+orig->messages: 'Messages', 'Mensajes' l: 8/8
+orig->firmwareVersion: 'Panel Due firmware version ', 'Versión del Firmware del Panel Due ' l: 27/36
+orig->response: 'Response', 'Respuesta' l: 8/9
+orig->filesOnCard: 'Files on card ', 'Archivos en la tarjeta ' l: 14/23
+orig->macros: 'Macros', 'Macros' l: 6/6
+orig->error: 'Error ', 'Error ' l: 6/6
+orig->accessingSdCard: ' accessing SD card', ' accediendo a la tarjeta SD' l: 18/27
+orig->fileName: 'Filename: ', 'Nombre del archivo: ' l: 10/20
+orig->fileSize: 'Size: ', 'Tamaño: ' l: 6/9
+orig->layerHeight: 'Layer height: ', 'Altura de capa: ' l: 14/16
+orig->objectHeight: 'Object height: ', 'Altura de objeto: ' l: 15/18
+orig->filamentNeeded: 'Filament needed: ', 'Filamento necesario: ' l: 17/21
+orig->generatedBy: 'Sliced by: ', 'Laminado por: ' l: 11/14
+orig->lastModified: 'Last modified: ', 'Última modificación: ' l: 15/23
+orig->estimatedPrintTime: 'Estimated print time: ', 'Tiempo estimado de impresión: ' l: 22/31
+orig->simulatedPrintTime: 'Simulated print time: ', 'Tiempo de impresión simulado: ' l: 22/31
+orig->simulate: 'Simulate', 'Simular' l: 8/7
 Status Values:
-orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'conexión'
-orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'en espera'
-orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'imprimiendo'
-orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'detuvo'
-orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'empezando'
-orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'pausado'
-orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'reanudando'
-orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'carga del firmware'
-orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'herramienta de cambio'
-orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', MISSING
-orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', MISSING
-orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', MISSING
+orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'conectando' l: 10/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'en espera' l: 4/9
+orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'imprimiendo' l: 8/11
+orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'parado' l: 6/6
+orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'empezando' l: 11/9
+orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'pausado' l: 6/7
+orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'reanudando' l: 8/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'carga del firmware' l: 15/18
+orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'cambio de herramienta' l: 13/21
+orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'simulando' l: 10/9
+orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'apagado' l: 3/7
+orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'cancelando' l: 10/10
 Colour Scheme Names:
-orig->colourSchemeNames[j]: 'Light theme', 'Claro'
-orig->colourSchemeNames[j]: 'Dark theme 1', 'Oscuro 1'
-orig->colourSchemeNames[j]: 'Dark theme 2', 'Oscuro 2'
+orig->colourSchemeNames[j]: 'Light theme', 'Claro' l: 11/5
+orig->colourSchemeNames[j]: 'Dark theme 1', 'Oscuro 1' l: 12/8
+orig->colourSchemeNames[j]: 'Dark theme 2', 'Oscuro 2' l: 12/8
 Display Dimming Names:
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Nunca Atenuar'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Siempre Atenuar'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Atenuar en espera'
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Nunca Atenuar' l: 9/13
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Siempre Atenuar' l: 10/15
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Atenuar en espera' l: 11/17
 Heater Combine Type Names:
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.'
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.'
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.' l: 16/16
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.' l: 13/13
