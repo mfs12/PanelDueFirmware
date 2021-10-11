@@ -1,97 +1,97 @@
 *****: cs
-orig->languageName: 'en', 'cs'
-orig->control: 'Control', 'Ovládání'
-orig->print: 'Print', 'Tisk'
-orig->status: 'Status', 'Status'
-orig->console: 'Console', 'Konzole'
-orig->setup: 'Setup', 'Nastavení'
-orig->current: 'Current°C', 'Aktuální°C'
-orig->active: 'Active°C', 'Aktivní°C'
-orig->standby: 'Standby°C', 'Nečinná°C'
-orig->move: 'Move', 'Pohyb'
-orig->extrusion: 'Extrusion', 'Extruder'
-orig->macro: 'Macro', 'Makra'
-orig->stop: 'STOP', 'STOP'
-orig->extruderPercent: 'Extruder%', 'Extruder%'
-orig->speed: 'Speed ', 'Rychl. '
-orig->fan: 'Fan ', 'Vent. '
-orig->timeRemaining: 'Time left: ', 'Čas do konce: '
-orig->simulated: 'sim'd ', 'simul. '
-orig->file: 'file ', 'slicer '
-orig->filament: 'filament ', 'soubor '
-orig->slicer: 'slicer ', 'materiál '
-orig->notAvailable: 'n/a', 'n/a'
-orig->pause: 'Pause', 'Pozastavit'
-orig->babystep: 'Baby step', 'Baby step'
-orig->resume: 'Resume', 'Pokračovat'
-orig->cancel: 'Cancel', 'Zrušit'
-orig->reprint: 'Print again', 'Print again'
-orig->resimulate: 'Simulate again', 'Simulate again'
-orig->set: 'Set', 'OK'
-orig->volume: 'Volume ', 'Hlasitost '
-orig->calibrateTouch: 'Calibrate touch', 'Kalibrace dotyku'
-orig->mirrorDisplay: 'Mirror display', 'Zrcadlit displej'
-orig->invertDisplay: 'Invert display', 'Obrátit displej'
-orig->theme: 'Theme', 'Motiv'
-orig->brightnessDown: 'Brightness -', 'Podsvícení -'
-orig->brightnessUp: 'Brightness +', 'Podsvícení +'
-orig->saveSettings: 'Save settings', 'Uložit nastavení'
-orig->clearSettings: 'Clear settings', 'Smazat nastavení'
-orig->saveAndRestart: 'Save & Restart', 'Uložit a Restart'
-orig->infoTimeout: 'Info timeout ', 'Info timeout '
-orig->screensaverAfter: 'Screensaver ', 'Screensaver '
-orig->babystepAmount: 'Babystep ', 'Babystep '
-orig->feedrate: 'Feedrate ', 'Feedrate '
-orig->confirmFactoryReset: 'Confirm factory reset', 'Skutečně obnovit tovární nastavení?'
-orig->confirmFileDelete: 'Confirm file delete', 'Skutečně smazat?'
-orig->areYouSure: 'Are you sure?', 'Určitě?'
-orig->touchTheSpot: 'Touch the spot', 'Dotkněte se bodu'
-orig->moveHead: 'Move head', 'Posun hlavy'
-orig->extrusionAmount: 'Extrusion amount (mm)', 'Množství (mm)'
-orig->extrusionSpeed: 'Speed (mm/s)', 'Rychlost (mm/s)'
-orig->extrude: 'Extrude', 'Vytlačit (extr.)'
-orig->retract: 'Retract', 'Zatlačit (retr.)'
-orig->babyStepping: 'Baby stepping', 'Baby stepping'
-orig->currentZoffset: 'Current Z offset: ', 'Aktuální Z offset: '
-orig->message: 'Message', 'Zpráva'
-orig->messages: 'Messages', 'Zprávy'
-orig->firmwareVersion: 'Panel Due firmware version ', 'Verze firmware Panel Due '
-orig->response: 'Response', 'Odpověď'
-orig->filesOnCard: 'Files on card ', 'Soubory na kartě '
-orig->macros: 'Macros', 'Makra'
-orig->error: 'Error ', 'Chyba '
-orig->accessingSdCard: ' accessing SD card', ' přístupu ke kartě'
-orig->fileName: 'Filename: ', 'Název: '
-orig->fileSize: 'Size: ', 'Velikost: '
-orig->layerHeight: 'Layer height: ', 'Výška vrstvy: '
-orig->objectHeight: 'Object height: ', 'Výška objektu: '
-orig->filamentNeeded: 'Filament needed: ', 'Spotřeba (mat.): '
-orig->generatedBy: 'Sliced by: ', 'Slicer: '
-orig->lastModified: 'Last modified: ', 'Poslední úprava: '
-orig->estimatedPrintTime: 'Estimated print time: ', 'Zbývající čas tisku: '
-orig->simulatedPrintTime: 'Simulated print time: ', 'Simulovaný čas tisku: '
-orig->simulate: 'Simulate', 'Simulace'
+orig->languageName: 'en', 'cs' l: 2/2
+orig->control: 'Control', 'Ovládání' l: 7/11
+orig->print: 'Print', 'Tisk' l: 5/4
+orig->status: 'Status', 'Status' l: 6/6
+orig->console: 'Console', 'Konzole' l: 7/7
+orig->setup: 'Setup', 'Nastavení' l: 5/10
+orig->current: 'Current°C', 'Aktuální°C' l: 12/15
+orig->active: 'Active°C', 'Aktivní°C' l: 11/13
+orig->standby: 'Standby°C', 'Nečinná°C' l: 12/14
+orig->move: 'Move', 'Pohyb' l: 4/5
+orig->extrusion: 'Extrusion', 'Extruder' l: 9/8
+orig->macro: 'Macro', 'Makra' l: 5/5
+orig->stop: 'STOP', 'STOP' l: 4/4
+orig->extruderPercent: 'Extruder%', 'Extruder%' l: 11/11
+orig->speed: 'Speed ', 'Rychl. ' l: 6/7
+orig->fan: 'Fan ', 'Vent. ' l: 4/6
+orig->timeRemaining: 'Time left: ', 'Čas do konce: ' l: 11/15
+orig->simulated: 'sim'd ', 'simul. ' l: 6/7
+orig->file: 'file ', 'soubor ' l: 5/7
+orig->filament: 'filament ', 'materiál ' l: 9/10
+orig->slicer: 'slicer ', 'slicer ' l: 7/7
+orig->notAvailable: 'n/a', 'n/a' l: 3/3
+orig->pause: 'Pause', 'Pozastavit' l: 5/10
+orig->babystep: 'Baby step', 'Baby step' l: 9/9
+orig->resume: 'Resume', 'Pokračovat' l: 6/11
+orig->cancel: 'Cancel', 'Zrušit' l: 6/7
+orig->reprint: 'Print again', 'Print again' l: 11/11
+orig->resimulate: 'Simulate again', 'Simulate again' l: 14/14
+orig->set: 'Set', 'OK' l: 3/2
+orig->volume: 'Volume ', 'Hlasitost ' l: 7/10
+orig->calibrateTouch: 'Calibrate touch', 'Kalibrace dotyku' l: 15/16
+orig->mirrorDisplay: 'Mirror display', 'Zrcadlit displej' l: 14/16
+orig->invertDisplay: 'Invert display', 'Obrátit displej' l: 14/16
+orig->theme: 'Theme', 'Motiv' l: 5/5
+orig->brightnessDown: 'Brightness -', 'Podsvícení -' l: 12/14
+orig->brightnessUp: 'Brightness +', 'Podsvícení +' l: 12/14
+orig->saveSettings: 'Save settings', 'Uložit nastavení' l: 13/18
+orig->clearSettings: 'Clear settings', 'Smazat nastavení' l: 14/17
+orig->saveAndRestart: 'Save & Restart', 'Uložit a Restart' l: 14/17
+orig->infoTimeout: 'Info timeout ', 'Info timeout ' l: 13/13
+orig->screensaverAfter: 'Screensaver ', 'Screensaver ' l: 12/12
+orig->babystepAmount: 'Babystep ', 'Babystep ' l: 9/9
+orig->feedrate: 'Feedrate ', 'Feedrate ' l: 9/9
+orig->confirmFactoryReset: 'Confirm factory reset', 'Skutečně obnovit tovární nastavení?' l: 21/40
+orig->confirmFileDelete: 'Confirm file delete', 'Skutečně smazat?' l: 19/18
+orig->areYouSure: 'Are you sure?', 'Určitě?' l: 13/9
+orig->touchTheSpot: 'Touch the spot', 'Dotkněte se bodu' l: 14/17
+orig->moveHead: 'Move head', 'Posun hlavy' l: 9/11
+orig->extrusionAmount: 'Extrusion amount (mm)', 'Množství (mm)' l: 21/15
+orig->extrusionSpeed: 'Speed (mm/s)', 'Rychlost (mm/s)' l: 12/15
+orig->extrude: 'Extrude', 'Vytlačit (extr.)' l: 7/17
+orig->retract: 'Retract', 'Zatlačit (retr.)' l: 7/17
+orig->babyStepping: 'Baby stepping', 'Baby stepping' l: 13/13
+orig->currentZoffset: 'Current Z offset: ', 'Aktuální Z offset: ' l: 18/21
+orig->message: 'Message', 'Zpráva' l: 7/7
+orig->messages: 'Messages', 'Zprávy' l: 8/7
+orig->firmwareVersion: 'Panel Due firmware version ', 'Verze firmware Panel Due ' l: 27/25
+orig->response: 'Response', 'Odpověď' l: 8/9
+orig->filesOnCard: 'Files on card ', 'Soubory na kartě ' l: 14/18
+orig->macros: 'Macros', 'Makra' l: 6/5
+orig->error: 'Error ', 'Chyba ' l: 6/6
+orig->accessingSdCard: ' accessing SD card', ' přístupu ke kartě' l: 18/21
+orig->fileName: 'Filename: ', 'Název: ' l: 10/8
+orig->fileSize: 'Size: ', 'Velikost: ' l: 6/10
+orig->layerHeight: 'Layer height: ', 'Výška vrstvy: ' l: 14/16
+orig->objectHeight: 'Object height: ', 'Výška objektu: ' l: 15/17
+orig->filamentNeeded: 'Filament needed: ', 'Spotřeba (mat.): ' l: 17/18
+orig->generatedBy: 'Sliced by: ', 'Slicer: ' l: 11/8
+orig->lastModified: 'Last modified: ', 'Poslední úprava: ' l: 15/19
+orig->estimatedPrintTime: 'Estimated print time: ', 'Zbývající čas tisku: ' l: 22/25
+orig->simulatedPrintTime: 'Simulated print time: ', 'Simulovaný čas tisku: ' l: 22/24
+orig->simulate: 'Simulate', 'Simulace' l: 8/8
 Status Values:
-orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Připojování'
-orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Nečinný'
-orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Tiskne'
-orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Zastaven'
-orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Startuje'
-orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Pozastaven'
-orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Pokračuje'
-orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Nahrává firmware'
-orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Výměna nástroje'
-orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Simulace'
-orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', MISSING
-orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', MISSING
+orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Připojování' l: 10/14
+orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Nečinný' l: 4/9
+orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Tiskne' l: 8/6
+orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Zastaven' l: 6/8
+orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Startuje' l: 11/8
+orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Pozastaven' l: 6/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Pokračuje' l: 8/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Nahrává firmware' l: 15/18
+orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Výměna nástroje' l: 13/18
+orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Simulace' l: 10/8
+orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'Vypnuto' l: 3/7
+orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'Ruší se' l: 10/9
 Colour Scheme Names:
-orig->colourSchemeNames[j]: 'Light theme', 'Světlý'
-orig->colourSchemeNames[j]: 'Dark theme 1', 'Tmavý 1'
-orig->colourSchemeNames[j]: 'Dark theme 2', 'Tmavý 2'
+orig->colourSchemeNames[j]: 'Light theme', 'Světlý' l: 11/8
+orig->colourSchemeNames[j]: 'Dark theme 1', 'Tmavý 1' l: 12/8
+orig->colourSchemeNames[j]: 'Dark theme 2', 'Tmavý 2' l: 12/8
 Display Dimming Names:
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Nikdy neztlumit jas'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Pohasnout vždy'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Pohasnout při nečinnosti'
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Nikdy neztlumit jas' l: 9/19
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Pohasnout vždy' l: 10/15
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Pohasnout při nečinnosti' l: 11/26
 Heater Combine Type Names:
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.'
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.'
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.' l: 16/16
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.' l: 13/13
