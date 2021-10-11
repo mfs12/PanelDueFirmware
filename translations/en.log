@@ -1,97 +1,97 @@
 *****: en
-orig->languageName: 'en', 'en'
-orig->control: 'Control', 'Control'
-orig->print: 'Print', 'Print'
-orig->status: 'Status', 'Status'
-orig->console: 'Console', 'Console'
-orig->setup: 'Setup', 'Setup'
-orig->current: 'Current°C', 'Current°C'
-orig->active: 'Active°C', 'Active°C'
-orig->standby: 'Standby°C', 'Standby°C'
-orig->move: 'Move', 'Move'
-orig->extrusion: 'Extrusion', 'Extrusion'
-orig->macro: 'Macro', 'Macro'
-orig->stop: 'STOP', 'STOP'
-orig->extruderPercent: 'Extruder%', 'Extruder%'
-orig->speed: 'Speed ', 'Speed '
-orig->fan: 'Fan ', 'Fan '
-orig->timeRemaining: 'Time left: ', 'Time left: '
-orig->simulated: 'sim'd ', 'sim'd '
-orig->file: 'file ', 'file '
-orig->filament: 'filament ', 'filament '
-orig->slicer: 'slicer ', 'slicer '
-orig->notAvailable: 'n/a', 'n/a'
-orig->pause: 'Pause', 'Pause'
-orig->babystep: 'Baby step', 'Baby step'
-orig->resume: 'Resume', 'Resume'
-orig->cancel: 'Cancel', 'Cancel'
-orig->reprint: 'Print again', 'Print again'
-orig->resimulate: 'Simulate again', 'Simulate again'
-orig->set: 'Set', 'Set'
-orig->volume: 'Volume ', 'Volume '
-orig->calibrateTouch: 'Calibrate touch', 'Calibrate touch'
-orig->mirrorDisplay: 'Mirror display', 'Mirror display'
-orig->invertDisplay: 'Invert display', 'Invert display'
-orig->theme: 'Theme', 'Theme'
-orig->brightnessDown: 'Brightness -', 'Brightness -'
-orig->brightnessUp: 'Brightness +', 'Brightness +'
-orig->saveSettings: 'Save settings', 'Save settings'
-orig->clearSettings: 'Clear settings', 'Clear settings'
-orig->saveAndRestart: 'Save & Restart', 'Save & Restart'
-orig->infoTimeout: 'Info timeout ', 'Info timeout '
-orig->screensaverAfter: 'Screensaver ', 'Screensaver '
-orig->babystepAmount: 'Babystep ', 'Babystep '
-orig->feedrate: 'Feedrate ', 'Feedrate '
-orig->confirmFactoryReset: 'Confirm factory reset', 'Confirm factory reset'
-orig->confirmFileDelete: 'Confirm file delete', 'Confirm file delete'
-orig->areYouSure: 'Are you sure?', 'Are you sure?'
-orig->touchTheSpot: 'Touch the spot', 'Touch the spot'
-orig->moveHead: 'Move head', 'Move head'
-orig->extrusionAmount: 'Extrusion amount (mm)', 'Extrusion amount (mm)'
-orig->extrusionSpeed: 'Speed (mm/s)', 'Speed (mm/s)'
-orig->extrude: 'Extrude', 'Extrude'
-orig->retract: 'Retract', 'Retract'
-orig->babyStepping: 'Baby stepping', 'Baby stepping'
-orig->currentZoffset: 'Current Z offset: ', 'Current Z offset: '
-orig->message: 'Message', 'Message'
-orig->messages: 'Messages', 'Messages'
-orig->firmwareVersion: 'Panel Due firmware version ', 'Panel Due firmware version '
-orig->response: 'Response', 'Response'
-orig->filesOnCard: 'Files on card ', 'Files on card '
-orig->macros: 'Macros', 'Macros'
-orig->error: 'Error ', 'Error '
-orig->accessingSdCard: ' accessing SD card', ' accessing SD card'
-orig->fileName: 'Filename: ', 'Filename: '
-orig->fileSize: 'Size: ', 'Size: '
-orig->layerHeight: 'Layer height: ', 'Layer height: '
-orig->objectHeight: 'Object height: ', 'Object height: '
-orig->filamentNeeded: 'Filament needed: ', 'Filament needed: '
-orig->generatedBy: 'Sliced by: ', 'Sliced by: '
-orig->lastModified: 'Last modified: ', 'Last modified: '
-orig->estimatedPrintTime: 'Estimated print time: ', 'Estimated print time: '
-orig->simulatedPrintTime: 'Simulated print time: ', 'Simulated print time: '
-orig->simulate: 'Simulate', 'Simulate'
+orig->languageName: 'en', 'en' l: 2/2
+orig->control: 'Control', 'Control' l: 7/7
+orig->print: 'Print', 'Print' l: 5/5
+orig->status: 'Status', 'Status' l: 6/6
+orig->console: 'Console', 'Console' l: 7/7
+orig->setup: 'Setup', 'Setup' l: 5/5
+orig->current: 'Current°C', 'Current°C' l: 12/12
+orig->active: 'Active°C', 'Active°C' l: 11/11
+orig->standby: 'Standby°C', 'Standby°C' l: 12/12
+orig->move: 'Move', 'Move' l: 4/4
+orig->extrusion: 'Extrusion', 'Extrusion' l: 9/9
+orig->macro: 'Macro', 'Macro' l: 5/5
+orig->stop: 'STOP', 'STOP' l: 4/4
+orig->extruderPercent: 'Extruder%', 'Extruder%' l: 11/11
+orig->speed: 'Speed ', 'Speed ' l: 6/6
+orig->fan: 'Fan ', 'Fan ' l: 4/4
+orig->timeRemaining: 'Time left: ', 'Time left: ' l: 11/11
+orig->simulated: 'sim'd ', 'sim'd ' l: 6/6
+orig->file: 'file ', 'file ' l: 5/5
+orig->filament: 'filament ', 'filament ' l: 9/9
+orig->slicer: 'slicer ', 'slicer ' l: 7/7
+orig->notAvailable: 'n/a', 'n/a' l: 3/3
+orig->pause: 'Pause', 'Pause' l: 5/5
+orig->babystep: 'Baby step', 'Baby step' l: 9/9
+orig->resume: 'Resume', 'Resume' l: 6/6
+orig->cancel: 'Cancel', 'Cancel' l: 6/6
+orig->reprint: 'Print again', 'Print again' l: 11/11
+orig->resimulate: 'Simulate again', 'Simulate again' l: 14/14
+orig->set: 'Set', 'Set' l: 3/3
+orig->volume: 'Volume ', 'Volume ' l: 7/7
+orig->calibrateTouch: 'Calibrate touch', 'Calibrate touch' l: 15/15
+orig->mirrorDisplay: 'Mirror display', 'Mirror display' l: 14/14
+orig->invertDisplay: 'Invert display', 'Invert display' l: 14/14
+orig->theme: 'Theme', 'Theme' l: 5/5
+orig->brightnessDown: 'Brightness -', 'Brightness -' l: 12/12
+orig->brightnessUp: 'Brightness +', 'Brightness +' l: 12/12
+orig->saveSettings: 'Save settings', 'Save settings' l: 13/13
+orig->clearSettings: 'Clear settings', 'Clear settings' l: 14/14
+orig->saveAndRestart: 'Save & Restart', 'Save & Restart' l: 14/14
+orig->infoTimeout: 'Info timeout ', 'Info timeout ' l: 13/13
+orig->screensaverAfter: 'Screensaver ', 'Screensaver ' l: 12/12
+orig->babystepAmount: 'Babystep ', 'Babystep ' l: 9/9
+orig->feedrate: 'Feedrate ', 'Feedrate ' l: 9/9
+orig->confirmFactoryReset: 'Confirm factory reset', 'Confirm factory reset' l: 21/21
+orig->confirmFileDelete: 'Confirm file delete', 'Confirm file delete' l: 19/19
+orig->areYouSure: 'Are you sure?', 'Are you sure?' l: 13/13
+orig->touchTheSpot: 'Touch the spot', 'Touch the spot' l: 14/14
+orig->moveHead: 'Move head', 'Move head' l: 9/9
+orig->extrusionAmount: 'Extrusion amount (mm)', 'Extrusion amount (mm)' l: 21/21
+orig->extrusionSpeed: 'Speed (mm/s)', 'Speed (mm/s)' l: 12/12
+orig->extrude: 'Extrude', 'Extrude' l: 7/7
+orig->retract: 'Retract', 'Retract' l: 7/7
+orig->babyStepping: 'Baby stepping', 'Baby stepping' l: 13/13
+orig->currentZoffset: 'Current Z offset: ', 'Current Z offset: ' l: 18/18
+orig->message: 'Message', 'Message' l: 7/7
+orig->messages: 'Messages', 'Messages' l: 8/8
+orig->firmwareVersion: 'Panel Due firmware version ', 'Panel Due firmware version ' l: 27/27
+orig->response: 'Response', 'Response' l: 8/8
+orig->filesOnCard: 'Files on card ', 'Files on card ' l: 14/14
+orig->macros: 'Macros', 'Macros' l: 6/6
+orig->error: 'Error ', 'Error ' l: 6/6
+orig->accessingSdCard: ' accessing SD card', ' accessing SD card' l: 18/18
+orig->fileName: 'Filename: ', 'Filename: ' l: 10/10
+orig->fileSize: 'Size: ', 'Size: ' l: 6/6
+orig->layerHeight: 'Layer height: ', 'Layer height: ' l: 14/14
+orig->objectHeight: 'Object height: ', 'Object height: ' l: 15/15
+orig->filamentNeeded: 'Filament needed: ', 'Filament needed: ' l: 17/17
+orig->generatedBy: 'Sliced by: ', 'Sliced by: ' l: 11/11
+orig->lastModified: 'Last modified: ', 'Last modified: ' l: 15/15
+orig->estimatedPrintTime: 'Estimated print time: ', 'Estimated print time: ' l: 22/22
+orig->simulatedPrintTime: 'Simulated print time: ', 'Simulated print time: ' l: 22/22
+orig->simulate: 'Simulate', 'Simulate' l: 8/8
 Status Values:
-orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Connecting'
-orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Idle'
-orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Printing'
-orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Halted'
-orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Starting up'
-orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Paused'
-orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Resuming'
-orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Firmware upload'
-orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Changing tool'
-orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Simulating'
-orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'Off'
-orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'Cancelling'
+orig->statusValues[(unsigned int)OM::PrinterStatus::connecting]: 'Connecting', 'Connecting' l: 10/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::idle]: 'Idle', 'Idle' l: 4/4
+orig->statusValues[(unsigned int)OM::PrinterStatus::printing]: 'Printing', 'Printing' l: 8/8
+orig->statusValues[(unsigned int)OM::PrinterStatus::stopped]: 'Halted', 'Halted' l: 6/6
+orig->statusValues[(unsigned int)OM::PrinterStatus::configuring]: 'Starting up', 'Starting up' l: 11/11
+orig->statusValues[(unsigned int)OM::PrinterStatus::paused]: 'Paused', 'Paused' l: 6/6
+orig->statusValues[(unsigned int)OM::PrinterStatus::resuming]: 'Resuming', 'Resuming' l: 8/8
+orig->statusValues[(unsigned int)OM::PrinterStatus::flashing]: 'Firmware upload', 'Firmware upload' l: 15/15
+orig->statusValues[(unsigned int)OM::PrinterStatus::toolChange]: 'Changing tool', 'Changing tool' l: 13/13
+orig->statusValues[(unsigned int)OM::PrinterStatus::simulating]: 'Simulating', 'Simulating' l: 10/10
+orig->statusValues[(unsigned int)OM::PrinterStatus::off]: 'Off', 'Off' l: 3/3
+orig->statusValues[(unsigned int)OM::PrinterStatus::cancelling]: 'Cancelling', 'Cancelling' l: 10/10
 Colour Scheme Names:
-orig->colourSchemeNames[j]: 'Light theme', 'Light theme'
-orig->colourSchemeNames[j]: 'Dark theme 1', 'Dark theme 1'
-orig->colourSchemeNames[j]: 'Dark theme 2', 'Dark theme 2'
+orig->colourSchemeNames[j]: 'Light theme', 'Light theme' l: 11/11
+orig->colourSchemeNames[j]: 'Dark theme 1', 'Dark theme 1' l: 12/12
+orig->colourSchemeNames[j]: 'Dark theme 2', 'Dark theme 2' l: 12/12
 Display Dimming Names:
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Never dim'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Always dim'
-orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Dim if idle'
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::never]: 'Never dim', 'Never dim' l: 9/9
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::always]: 'Always dim', 'Always dim' l: 10/10
+orig->displayDimmingNames[(unsigned int)DisplayDimmerType::onIdle]: 'Dim if idle', 'Dim if idle' l: 11/11
 Heater Combine Type Names:
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.'
-orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.'
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]: 'Heat's not comb.', 'Heat's not comb.' l: 16/16
+orig->heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]: 'Heaters comb.', 'Heaters comb.' l: 13/13
