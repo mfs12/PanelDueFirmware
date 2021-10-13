@@ -2160,7 +2160,6 @@ int main(void)
 		} while (SystemTick::GetTickCount() - now < 5000);		// hold it there for 5 seconds or until touched
 	}
 
-	mgr.Refresh(true);								// draw the screen for the first time
 	UI::UpdatePrintingFields();
 
 	// Hide all tools and heater related columns initially

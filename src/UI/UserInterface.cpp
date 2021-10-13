@@ -1385,11 +1385,9 @@ namespace UI
 		case OM::PrinterStatus::idle:
 			printingFile.Clear();
 			nameField->SetValue(machineName.c_str());		// if we are on the print tab then it may still be set to the file that was being printed
-			if (IsPrintingStatus(oldStatus))
-			{
-				mgr.Refresh(true);		// Ending a print creates a popup and that will prevent removing some of the elements hidden so force it here
-			}
+
 			[[fallthrough]];
+
 		case OM::PrinterStatus::configuring:
 			if (oldStatus == OM::PrinterStatus::flashing)
 			{
