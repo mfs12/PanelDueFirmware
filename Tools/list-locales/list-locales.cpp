@@ -163,6 +163,10 @@ static int print_index(size_t index)
 	std::cout << "Heater Combine Type Names:" << std::endl;
 	PRINT_ENTRY(heaterCombineTypeNames[(unsigned int)HeaterCombineType::notCombined]);
 	PRINT_ENTRY(heaterCombineTypeNames[(unsigned int)HeaterCombineType::combined]);
+
+	std::cout << "Spindle Texts:" << std::endl;
+	PRINT_ENTRY(spindle.currentRpm);
+	PRINT_ENTRY(spindle.activeRpm);
 	
 	return 0;
 
