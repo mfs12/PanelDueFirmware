@@ -812,7 +812,7 @@ static void CreateWCSOffsetsPopup(const ColourScheme& colours)
 		wcsOffsetsPopup->AddField(new StaticTextField(ypos, CalcXPos(1, width, popupSideMargin), width*3 + 2*fieldSpacing, TextAlignment::Centre, jogAxes[i]));
 		ypos += buttonHeight + fieldSpacing;
 		DisplayField::SetDefaultColours(colours.popupButtonTextColour, colours.popupButtonBackColour);
-		wcsOffsetsPopup->AddField(wcsOffsetPos[i] = new FloatButton(ypos, CalcXPos(1, width, popupSideMargin), width*2 + fieldSpacing, 3));
+		wcsOffsetsPopup->AddField(wcsOffsetPos[i] = new FloatButton(ypos, CalcXPos(1, width, popupSideMargin), width * 2 + fieldSpacing, 3, nullptr, true));
 		wcsOffsetPos[i]->SetEvent(evSelectAxisForWCSFineControl, jogAxes[i]);
 		DisplayField::SetDefaultColours(colours.buttonTextColour, colours.buttonImageBackColour);
 		wcsOffsetsPopup->AddField(wcsSetToCurrent[i] = new IconButton(ypos, CalcXPos(3, width, popupSideMargin), width, IconSetToCurrent, evSetAxesOffsetToCurrent, jogAxes[i]));
