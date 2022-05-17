@@ -3235,7 +3235,7 @@ namespace UI
 
 	void UpdateWCSOffsetsPopupPositions(uint8_t wcsNumber)
 	{
-		OM::IterateAxesWhile([wcsNumber](OM::Axis*& axis, size_t){
+		OM::IterateAxesWhile([wcsNumber](OM::Axis*& axis, size_t) {
 			int slot = IsVisibleAxisPendant(axis->letter);
 			if (slot < 0)
 			{
