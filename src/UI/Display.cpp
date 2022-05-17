@@ -903,11 +903,13 @@ size_t IconButtonWithText::PrintText() const
 	{
 		return ret;
 	}
+
 	if (text != nullptr)
 	{
 		ret += lcd.printf("%s", text);
 	}
-	else {
+	else
+	{
 		ret += lcd.printf("%d", val);
 	}
 	return ret;

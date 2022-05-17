@@ -114,8 +114,13 @@ static const char* _ecv_array const * _ecv_array currentKeyboard;
 static TextButton *macroButtonsP[NumDisplayedMacrosP];
 static FileListButtons macrosListButtonsP;
 static PopupWindow *setTempPopupEncoder, *macrosPopupP, *areYouSurePopupP, *extrudePopupP, *wcsOffsetsPopup;
+
+static StaticTextField* wcsOffsetLabel[ARRAY_SIZE(jogAxes)];
+static const size_t wcsOffsetTextMaxLen = 24;
+static char wcsOffsetText[ARRAY_SIZE(jogAxes)][wcsOffsetTextMaxLen];
 static FloatButton* wcsOffsetPos[ARRAY_SIZE(jogAxes)];
 static IconButton* wcsSetToCurrent[ARRAY_SIZE(jogAxes)];
+
 static StaticTextField *areYouSureTextFieldP, *areYouSureQueryFieldP;
 static DisplayField *pendantBaseRoot, *pendantJogRoot, *pendantOffsetRoot, *pendantJobRoot;
 static SingleButton *homeAllButtonP, *homeButtonsP[MaxTotalAxes], *measureZButton;
@@ -809,10 +814,18 @@ static void CreateWCSOffsetsPopup(const ColourScheme& colours)
 	for (size_t i = 0; i < ARRAY_SIZE(jogAxes); ++i)
 	{
 		DisplayField::SetDefaultColours(colours.titleBarTextColour, colours.titleBarBackColour);
-		wcsOffsetsPopup->AddField(new StaticTextField(ypos, CalcXPos(1, width, popupSideMargin), width*3 + 2*fieldSpacing, TextAlignment::Centre, jogAxes[i]));
+		wcsOffsetsPopup->AddField(
+			(wcsOffsetLabel[i] = new StaticTextField(
+				ypos,
+				CalcXPos(1, width, popupSideMargin),
+				width * 3 + 2 * fieldSpacing,
+				TextAlignment::Centre, jogAxes[i])
+			)
+		);
+
 		ypos += buttonHeight + fieldSpacing;
 		DisplayField::SetDefaultColours(colours.popupButtonTextColour, colours.popupButtonBackColour);
-		wcsOffsetsPopup->AddField(wcsOffsetPos[i] = new FloatButton(ypos, CalcXPos(1, width, popupSideMargin), width*2 + fieldSpacing, 3));
+		wcsOffsetsPopup->AddField(wcsOffsetPos[i] = new FloatButton(ypos, CalcXPos(1, width, popupSideMargin), width * 2 + fieldSpacing, 3, nullptr, true));
 		wcsOffsetPos[i]->SetEvent(evSelectAxisForWCSFineControl, jogAxes[i]);
 		DisplayField::SetDefaultColours(colours.buttonTextColour, colours.buttonImageBackColour);
 		wcsOffsetsPopup->AddField(wcsSetToCurrent[i] = new IconButton(ypos, CalcXPos(3, width, popupSideMargin), width, IconSetToCurrent, evSetAxesOffsetToCurrent, jogAxes[i]));
@@ -2049,6 +2062,15 @@ namespace UI
 				size_t slotP = axis->slotP;
 				jogTabAxisPos[slotP]->SetValue(fval);
 				jobTabAxisPos[slotP]->SetValue(fval);
+
+				if (axisIndex < ARRAY_SIZE(jogAxes))
+				{
+					SafeSnprintf(wcsOffsetText[axisIndex], ARRAY_SIZE(wcsOffsetText[axisIndex]),
+						"%s %1f", jogAxes[axisIndex], fval);
+					wcsOffsetText[axisIndex][ARRAY_SIZE(wcsOffsetText[axisIndex]) - 1] = '\0';
+					wcsOffsetLabel[axisIndex]->SetValue(wcsOffsetText[axisIndex]);
+
+				}
 			}
 		}
 	}
@@ -3213,7 +3235,7 @@ namespace UI
 
 	void UpdateWCSOffsetsPopupPositions(uint8_t wcsNumber)
 	{
-		OM::IterateAxesWhile([wcsNumber](OM::Axis*& axis, size_t){
+		OM::IterateAxesWhile([wcsNumber](OM::Axis*& axis, size_t) {
 			int slot = IsVisibleAxisPendant(axis->letter);
 			if (slot < 0)
 			{

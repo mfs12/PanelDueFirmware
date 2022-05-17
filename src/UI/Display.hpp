@@ -670,8 +670,9 @@ protected:
 	size_t PrintText(size_t offset) const override;
 
 public:
-	FloatButton(PixelNumber py, PixelNumber px, PixelNumber pw, uint8_t pd, const char * _ecv_array pt = nullptr, bool isToggle = 0)
-		: ButtonWithText(py, px, pw), units(pt), val(0.0), numDecimals(pd) {
+	FloatButton(PixelNumber py, PixelNumber px, PixelNumber pw, uint8_t pd, const char * _ecv_array pt = nullptr, bool isToggle = false)
+		: ButtonWithText(py, px, pw), units(pt), val(0.0), numDecimals(pd)
+	{
 			toggle = isToggle;
 	}
 
