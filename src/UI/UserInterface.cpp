@@ -2057,20 +2057,21 @@ namespace UI
 #endif
 				movePopupAxisPos[slot]->SetValue(fval);
 			}
+
 			if (axis != nullptr && axis->slotP < MaxDisplayableAxesP)
 			{
 				size_t slotP = axis->slotP;
 				jogTabAxisPos[slotP]->SetValue(fval);
 				jobTabAxisPos[slotP]->SetValue(fval);
 
-				if (axisIndex < ARRAY_SIZE(jogAxes))
-				{
-					SafeSnprintf(wcsOffsetText[axisIndex], ARRAY_SIZE(wcsOffsetText[axisIndex]),
-						"%s %1f", jogAxes[axisIndex], fval);
-					wcsOffsetText[axisIndex][ARRAY_SIZE(wcsOffsetText[axisIndex]) - 1] = '\0';
-					wcsOffsetLabel[axisIndex]->SetValue(wcsOffsetText[axisIndex]);
+			}
 
-				}
+			if (axisIndex < ARRAY_SIZE(jogAxes))
+			{
+				SafeSnprintf(wcsOffsetText[axisIndex], ARRAY_SIZE(wcsOffsetText[axisIndex]),
+						"%s %1f", jogAxes[axisIndex], fval);
+				wcsOffsetText[axisIndex][ARRAY_SIZE(wcsOffsetText[axisIndex]) - 1] = '\0';
+				wcsOffsetLabel[axisIndex]->SetValue(wcsOffsetText[axisIndex]);
 			}
 		}
 	}
