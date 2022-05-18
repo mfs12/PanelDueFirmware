@@ -115,11 +115,9 @@ static TextButton *macroButtonsP[NumDisplayedMacrosP];
 static FileListButtons macrosListButtonsP;
 static PopupWindow *setTempPopupEncoder, *macrosPopupP, *areYouSurePopupP, *extrudePopupP, *wcsOffsetsPopup;
 
-static StaticTextField* wcsOffsetLabel[ARRAY_SIZE(jogAxes)];
-static const size_t wcsOffsetTextMaxLen = 24;
-static char wcsOffsetText[ARRAY_SIZE(jogAxes)][wcsOffsetTextMaxLen];
-static FloatButton* wcsOffsetPos[ARRAY_SIZE(jogAxes)];
-static IconButton* wcsSetToCurrent[ARRAY_SIZE(jogAxes)];
+static FloatField* wcsOffsetLabel[ARRAY_SIZE(wcsAxes)];
+static FloatButton* wcsOffsetPos[ARRAY_SIZE(wcsAxes)];
+static IconButton* wcsSetToCurrent[ARRAY_SIZE(wcsAxes)];
 
 static StaticTextField *areYouSureTextFieldP, *areYouSureQueryFieldP;
 static DisplayField *pendantBaseRoot, *pendantJogRoot, *pendantOffsetRoot, *pendantJobRoot;
@@ -811,15 +809,15 @@ static void CreateWCSOffsetsPopup(const ColourScheme& colours)
 	wcsOffsetsPopup->AddField(activateWCSButton = new TextButton(ypos, CalcXPos(1, width, popupSideMargin), width*3 + 2*fieldSpacing, strings->selectWCS, evActivateWCS, 0));
 
 	ypos += buttonHeight + fieldSpacing;
-	for (size_t i = 0; i < ARRAY_SIZE(jogAxes); ++i)
+	for (size_t i = 0; i < ARRAY_SIZE(wcsAxes); ++i)
 	{
 		DisplayField::SetDefaultColours(colours.titleBarTextColour, colours.titleBarBackColour);
 		wcsOffsetsPopup->AddField(
-			(wcsOffsetLabel[i] = new StaticTextField(
+			(wcsOffsetLabel[i] = new FloatField(
 				ypos,
 				CalcXPos(1, width, popupSideMargin),
 				width * 3 + 2 * fieldSpacing,
-				TextAlignment::Centre, jogAxes[i])
+				TextAlignment::Centre, 3, wcsAxes[i])
 			)
 		);
 
@@ -2066,12 +2064,9 @@ namespace UI
 
 			}
 
-			if (axisIndex < ARRAY_SIZE(jogAxes))
+			if (axisIndex < ARRAY_SIZE(wcsOffsetLabel))
 			{
-				SafeSnprintf(wcsOffsetText[axisIndex], ARRAY_SIZE(wcsOffsetText[axisIndex]),
-						"%s %1f", jogAxes[axisIndex], fval);
-				wcsOffsetText[axisIndex][ARRAY_SIZE(wcsOffsetText[axisIndex]) - 1] = '\0';
-				wcsOffsetLabel[axisIndex]->SetValue(wcsOffsetText[axisIndex]);
+				wcsOffsetLabel[axisIndex]->SetValue(fval);
 			}
 		}
 	}
