@@ -706,13 +706,21 @@ static void UpdatePollRate(bool idle)
 // Initialise the LCD and user interface. The non-volatile data must be set up before calling this.
 static void InitLcd()
 {
-	lcd.InitLCD(nvData.lcdOrientation, IS_24BIT, IS_ER);				// set up the LCD
-	colours = &colourSchemes[nvData.colourScheme];
-	UI::InitColourScheme(colours);
-	UI::CreateFields(nvData.language, *colours, nvData.infoTimeout);	// create all the fields
-	lcd.fillScr(black);													// make sure the memory is clear
-	Delay(100);															// give the LCD time to update
+	lcd.InitLCD(DisplayOrientation::Portrait, IS_24BIT, IS_ER);
+	colours = &colourSchemes[0];
+
+	lcd.fillScr(black);	// clear lcd memory
+	Delay(100);
 	backlight->SetState(BacklightStateNormal);
+
+	dbg("LCD init DONE\r\n");
+}
+
+static void InitTouch()
+{
+	// configure for portrait
+	touch.init(DisplayY, DisplayX, DisplayOrientation::ReverseX);
+	touch.calibrate(nvData.xmin, nvData.xmax, nvData.ymin, nvData.ymax, touchCalibMargin);
 }
 
 void TouchBeep()
@@ -2276,6 +2284,8 @@ int main(void)
 #endif
 
 	InitLcd();
+	InitTouch();
+
 	// Read parameters from flash memory
 	if (!initializedSettings)
 	{
