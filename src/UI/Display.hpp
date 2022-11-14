@@ -22,6 +22,8 @@
 # define UNUSED(_x)	(void)(_x)
 #endif
 
+#define DISPLAY_HEIGHT_STATIC 1
+
 // Fonts are held as arrays of 8-bit data in flash.
 typedef const uint8_t * _ecv_array LcdFont;
 
@@ -101,7 +103,9 @@ public:
 
 	void AddChild(DisplayField *child);
 	DisplayField *Find(DisplayField *field);
+
 	virtual void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset);
+	virtual void DrawOutline(PixelNumber xOffset, PixelNumber yOffset) const;
 
 	virtual bool IsButton() const { return false; }
 	virtual bool IsVisible() const { return visible; }
@@ -115,8 +119,8 @@ public:
 	PixelNumber GetMinY() const { return y; }
 	PixelNumber GetMaxY() const { return y + GetHeight() - 1; }
 
-	virtual PixelNumber GetHeight() const { return height; }
-	virtual PixelNumber GetWidth() const { return width; }
+	PixelNumber GetHeight() const { return height; }
+	PixelNumber GetWidth() const { return width; }
 
 	void SetPositionAndWidth(PixelNumber newX, PixelNumber newWidth);
 	void SetPosition(PixelNumber x, PixelNumber y);
@@ -221,20 +225,25 @@ class FieldWithText : public DisplayField
 	TextAlignment align;
 
 protected:
+#if DISPLAY_HEIGHT_STATIC == 0
 	PixelNumber GetHeight() const override;
+#endif
 
 	virtual void PrintText() const = 0;
 
-	FieldWithText(PixelNumber py, PixelNumber px, PixelNumber pw, TextAlignment pa, bool withBorder, bool isUnderlined = false)
-		: DisplayField(py, px, pw), font(DisplayField::defaultFont), align(pa)
+	FieldWithText(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, TextAlignment pa, bool withBorder, bool isUnderlined = false)
+		: DisplayField(py, px, pw, ph), font(DisplayField::defaultFont), align(pa)
 	{
 		underlined = isUnderlined;
 		border = withBorder;
 		textRows = 1;
-	}
+	};
+	FieldWithText(PixelNumber py, PixelNumber px, PixelNumber pw, TextAlignment pa, bool withBorder, bool isUnderlined = false) : FieldWithText(py, px, pw, 0, pa, withBorder, isUnderlined) {};
 
 public:
-	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override final;
+	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override;
+	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset,
+			PixelNumber marginLeft, PixelNumber marginRight);
 };
 
 // Class to display a fixed label and some variable text
@@ -339,16 +348,20 @@ public:
 class StaticTextField : public FieldWithText
 {
 	const char * _ecv_array null text;
+	PixelNumber marginLeft;
+	PixelNumber marginRight;
 
 protected:
 	void PrintText() const override;
 
 public:
-	StaticTextField(PixelNumber py, PixelNumber px, PixelNumber pw, TextAlignment pa, const char * _ecv_array null pt, bool isUnderlined = false)
-		: FieldWithText(py, px, pw, pa, false, isUnderlined), text(pt)
+	StaticTextField(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, PixelNumber marginLeft, PixelNumber marginRight, TextAlignment pa, const char * _ecv_array null pt, bool isUnderlined = false)
+		: FieldWithText(py, px, pw, ph, pa, false, isUnderlined), text(pt), marginLeft(marginLeft), marginRight(marginRight)
 	{
 		SetTextRows(pt);
 	}
+	StaticTextField(PixelNumber py, PixelNumber px, PixelNumber pw, TextAlignment pa, const char * _ecv_array null pt, bool isUnderlined = false)
+		: StaticTextField(py, px, pw, 0, 0, 0, pa, pt, isUnderlined) {};
 
 	// Change the value
 	void SetValue(const char* _ecv_array null pt, bool forceUpdate = false)
@@ -360,7 +373,9 @@ public:
 		text = pt;
 		SetTextRows(pt);
 		changed = true;
-	}
+	};
+
+	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override;
 };
 
 class ButtonBase : public DisplayField
@@ -370,7 +385,9 @@ protected:
 	event_t evt;								// event number that is triggered by touching this field
 	bool pressed;								// putting this here instead of in SingleButton saves 4 byes per button
 
-	ButtonBase(PixelNumber py, PixelNumber px, PixelNumber pw);
+	ButtonBase(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph);
+	ButtonBase(PixelNumber py, PixelNumber px, PixelNumber pw) :
+		ButtonBase(py, px, pw, 0) {};
 	void DrawOutline(PixelNumber xOffset, PixelNumber yOffset, bool isPressed) const;
 	void CheckEvent(PixelNumber x, PixelNumber y, int& bestError, ButtonPress& best) override;
 
@@ -395,7 +412,13 @@ class SingleButton : public ButtonBase
 	EventParameter param;
 
 protected:
-	SingleButton(PixelNumber py, PixelNumber px, PixelNumber pw);
+	SingleButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph) :
+		ButtonBase(py, px, pw, ph)
+	{
+		param.sParam = nullptr;
+	}
+	SingleButton(PixelNumber py, PixelNumber px, PixelNumber pw) :
+		SingleButton(py, px, pw, 0) {};
 
 	void DrawOutline(PixelNumber xOffset, PixelNumber yOffset) const;
 
@@ -423,15 +446,19 @@ class ButtonWithText : public SingleButton
 	static LcdFont font;
 
 protected:
+#if DISPLAY_HEIGHT_STATIC == 0
 	PixelNumber GetHeight() const override;
+#endif
 
 	virtual size_t PrintText(size_t offset) const = 0;
 
 public:
-	ButtonWithText(PixelNumber py, PixelNumber px, PixelNumber pw)
-		: SingleButton(py, px, pw) {
+	ButtonWithText(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph)
+		: SingleButton(py, px, pw, ph) {
 		font = DisplayField::defaultFont;
 	};
+	ButtonWithText(PixelNumber py, PixelNumber px, PixelNumber pw) :
+		ButtonWithText(py, px, pw, 0) {};
 
 	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override final;
 
@@ -465,7 +492,9 @@ class ButtonRowWithText : public ButtonRow
 	static LcdFont font;
 
 protected:
+#if DISPLAY_HEIGHT_STATIC == 0
 	PixelNumber GetHeight() const override;
+#endif
 	virtual void PrintText(unsigned int n) const = 0;
 
 public:
@@ -501,8 +530,12 @@ protected:
 	size_t PrintText(size_t offset) const override;
 
 public:
-	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, int param = 0);
-	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, const char * _ecv_array param);
+	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, const char * _ecv_array null pt, event_t e, int param = 0);
+	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, int param = 0) :
+		TextButton(py, px, pw, 0, pt, e, param) {};
+	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, const char * _ecv_array null pt, event_t e, const char * _ecv_array param);
+	TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, const char * _ecv_array param) :
+		TextButton(py, px, pw, 0, pt, e, param) {};
 
 	// Hide any text buttons with null text
 	bool IsVisible() const override { return text != nullptr && DisplayField::IsVisible(); }
@@ -561,10 +594,12 @@ class IconButton : public SingleButton
 
 protected:
 	Icon icon;
+#if DISPLAY_HEIGHT_STATIC == 0
 	PixelNumber GetHeight() const override {
 		PixelNumber height = GetIconHeight(icon) + 2 * iconMargin + 2;
 		return height;
 	}
+#endif
 
 public:
 	IconButton(PixelNumber py, PixelNumber px, PixelNumber pw, Icon ic, event_t e, int param = 0);

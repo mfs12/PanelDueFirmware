@@ -579,6 +579,7 @@ void ColourGradientField::Refresh(bool full, PixelNumber xOffset, PixelNumber yO
 	}
 }
 
+#if DISPLAY_HEIGHT_STATIC == 0
 PixelNumber FieldWithText::GetHeight() const
 {
 	PixelNumber height = UTFT::GetFontHeight(font) * textRows;
@@ -593,14 +594,26 @@ PixelNumber FieldWithText::GetHeight() const
 	}
 	return height;
 }
+#endif
 
 void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 {
+	FieldWithText::Refresh(full, xOffset, yOffset, 0, 0);
+}
+
+void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset, PixelNumber marginLeft, PixelNumber marginRight)
+{
+	if (full)
+	{
+		DrawOutline(0, 0);
+	}
 	if (full || changed)
 	{
-		xOffset += x;
-		yOffset += y;
-		PixelNumber textWidth = width;
+		dbg("FieldWithText %p x %u y %u w %u h %u\r\n", this, x, y, width, height);
+		xOffset += x + marginLeft;
+		yOffset += y + (height / 2 - DisplayField::defaultFont[1] / 2);
+		PixelNumber textWidth = width - (marginLeft + marginRight);
+
 		if (border)
 		{
 			if (full)
@@ -630,11 +643,13 @@ void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 			lcd.setColor(fcolour);
 		}
 
+		dbg("FieldWithText xOffset %hu yOffset %hu rm %hu\r\n", xOffset, yOffset, xOffset + textWidth);
 		lcd.setTextPos(xOffset, yOffset, xOffset + textWidth);
+		lcd.clearToMargin();
 		if (align == TextAlignment::Left)
 		{
+			dbg("FieldWithText left aligned\r\n");
 			PrintText();
-			lcd.clearToMargin();
 			if (underlined)
 			{
 				lcd.drawLine(xOffset, underlineY, xOffset + actualWidth, underlineY);
@@ -642,11 +657,11 @@ void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 		}
 		else
 		{
-			lcd.clearToMargin();
 			PixelNumber spare = textWidth - actualWidth;
 			if (align == TextAlignment::Centre)
 			{
-				const PixelNumber textX = xOffset + spare/2;
+				dbg("FieldWithText centre aligned\r\n");
+				const PixelNumber textX = xOffset + spare / 2;
 				lcd.setTextPos(textX, yOffset, xOffset + textWidth);
 				PrintText();
 				if (underlined)
@@ -657,6 +672,7 @@ void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 			else
 			{
 				// Must be right aligned. Try to add a right margin of up to 3 pixels for better appearance.
+				dbg("FieldWithText right aligned\r\n");
 				if (spare <= 3)
 				{
 					spare = 0;
@@ -680,6 +696,7 @@ void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 
 void TextField::PrintText() const
 {
+	dbg("TextField %s\r\n", text);
 	if (label != nullptr)
 	{
 		lcd.printf("%s", label);
@@ -692,6 +709,7 @@ void TextField::PrintText() const
 
 void FloatField::PrintText() const
 {
+	dbg("FloatField %f\r\n", static_cast<double>(val));
 	if (label != nullptr)
 	{
 		lcd.printf("%s", label);
@@ -705,6 +723,7 @@ void FloatField::PrintText() const
 
 void IntegerField::PrintText() const
 {
+	dbg("IntegerField %d\r\n", val);
 	if (label != nullptr)
 	{
 		lcd.printf("%s", label);
@@ -718,21 +737,36 @@ void IntegerField::PrintText() const
 
 void StaticTextField::PrintText() const
 {
+	dbg("StaticTextField %s\r\n", text);
 	if (text != nullptr)
 	{
 		lcd.printf("%s", text);
 	}
 }
 
-ButtonBase::ButtonBase(PixelNumber py, PixelNumber px, PixelNumber pw)
-	: DisplayField(py, px, pw),
+void StaticTextField::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
+{
+	dbg("StaticTextField full %d margin l %hu r %hu\r\n", full, marginLeft, marginRight);
+	FieldWithText::Refresh(full, xOffset, yOffset, marginLeft, marginRight);
+}
+
+ButtonBase::ButtonBase(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph)
+	: DisplayField(py, px, pw, ph),
 	  borderColour(defaultButtonBorderColour), gradColour(defaultGradColour),
-	  pressedBackColour(defaultPressedBackColour), pressedGradColour(defaultPressedGradColour), evt(nullEvent), pressed(false)
+	  pressedBackColour(defaultPressedBackColour), pressedGradColour(defaultPressedGradColour), /*evt(nullEvent),*/ pressed(false)
 {
 }
 
 PixelNumber ButtonBase::textMargin = 1;
 PixelNumber ButtonBase::iconMargin = 1;
+
+void DisplayField::DrawOutline(PixelNumber xOffset, PixelNumber yOffset) const
+{
+	lcd.setColor(bcolour);
+	// Note that we draw the filled rounded rectangle with the full width but 2 pixels less height than the border.
+	// This means that we start with the requested colour inside the border.
+	lcd.fillRect(x + xOffset, y + yOffset + 1, x + xOffset + width - 1, y + yOffset + GetHeight() - 2);
+}
 
 void ButtonBase::DrawOutline(PixelNumber xOffset, PixelNumber yOffset, bool isPressed) const
 {
@@ -767,12 +801,6 @@ void ButtonBase::CheckEvent(PixelNumber x, PixelNumber y, int& bestError, Button
 	}
 }
 
-SingleButton::SingleButton(PixelNumber py, PixelNumber px, PixelNumber pw)
-	: ButtonBase(py, px, pw)
-{
-	param.sParam = nullptr;
-}
-
 void SingleButton::DrawOutline(PixelNumber xOffset, PixelNumber yOffset) const
 {
 	ButtonBase::DrawOutline(xOffset, yOffset, pressed);
@@ -790,12 +818,14 @@ void SingleButton::Press(bool p, int index) /*override*/
 
 /*static*/ LcdFont ButtonWithText::font;
 
+#if DISPLAY_HEIGHT_STATIC == 0
 PixelNumber ButtonWithText::GetHeight() const
 {
-	PixelNumber ret = (UTFT::GetFontHeight(font) + 2) * textRows - 2;	// height of the text
-	ret += 2 * textMargin + 2;											// add the border height
-	return ret;
+	PixelNumber height = (UTFT::GetFontHeight(font) + 2) * textRows - 2;	// height of the text
+	height += 2 * textMargin + 2;											// add the border height
+	return height;
 }
+#endif
 
 void ButtonWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 {
@@ -807,15 +837,14 @@ void ButtonWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset
 		lcd.setFont(font);
 		unsigned int rowsLeft = textRows;
 		size_t offset = 0;
-		PixelNumber rowY = y + yOffset + textMargin + 1;
+		PixelNumber rowOffset = yOffset + textMargin + 1 + (height / 2 - DisplayField::defaultFont[1] / 2);
 		do
 		{
 			lcd.setTextPos(0, 9999, width - 6);
 			PrintText(offset);							// dummy print to get text width
 			PixelNumber spare = width - 6 - lcd.getTextX();
-			lcd.setTextPos(x + xOffset + 3 + spare/2, rowY, x + xOffset + width - 3);	// text is always centre-aligned
+			lcd.setTextPos(x + xOffset + 3 + spare/2, y + rowOffset /* * (rowsLeft - textRows + 1) */, x + xOffset + width - 3);	// text is always centre-aligned
 			offset += PrintText(offset) + 1;
-			rowY += UTFT::GetFontHeight(font) + 2;
 		} while (--rowsLeft != 0);
 		lcd.setTransparentBackground(false);
 		changed = false;
@@ -834,15 +863,15 @@ size_t CharButton::PrintText(size_t offset) const
 	return lcd.write((char)GetIParam(0));
 }
 
-TextButton::TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, int param)
-	: ButtonWithText(py, px, pw), text(pt)
+TextButton::TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, const char * _ecv_array null pt, event_t e, int param)
+	: ButtonWithText(py, px, pw, ph), text(pt)
 {
 	SetTextRows(pt);
 	SetEvent(e, param);
 }
 
-TextButton::TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, const char * _ecv_array null pt, event_t e, const char * _ecv_array param)
-	: ButtonWithText(py, px, pw), text(pt)
+TextButton::TextButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, const char * _ecv_array null pt, event_t e, const char * _ecv_array param)
+	: ButtonWithText(py, px, pw, ph), text(pt)
 {
 	SetEvent(e, param);
 }
@@ -1013,12 +1042,14 @@ ButtonRowWithText::ButtonRowWithText(PixelNumber py, PixelNumber px, PixelNumber
 	font = DisplayField::defaultFont;
 }
 
+#if DISPLAY_HEIGHT_STATIC == 0
 PixelNumber ButtonRowWithText::GetHeight() const
 {
-	PixelNumber ret = (UTFT::GetFontHeight(font) + 2) * textRows - 2;	// height of the text
-	ret += 2 * textMargin + 2;											// add the border height
-	return ret;
+	PixelNumber height = (UTFT::GetFontHeight(font) + 2) * textRows - 2;	// height of the text
+	height += 2 * textMargin + 2;											// add the border height
+	return height;
 }
+#endif
 
 void ButtonRowWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
 {
