@@ -153,21 +153,24 @@ public:
 };
 
 class Status : public Element {
-	ColourGradientField status;
-
-	enum State {
-		Unknown,
-		Normal,
-		Warning,
-		Error
-	} state;
-
-	// will change dynamically depending on some state
 public:
-	Status(PixelNumber px, PixelNumber py, PixelNumber pw, PixelNumber ph) :
-		status(py, px, pw, ph) {
-			status.SetColours(UTFT::fromRGB(255,0,0), UTFT::fromRGB(0,128,0));
-		};
+	enum State {
+		Unknown = UTFT::fromRGB(0x50, 0x50, 0x50), // #505050
+		Normal = UTFT::fromRGB(0x00, 0xf9, 0x00), // #00f900
+		Warning = UTFT::fromRGB(0xff, 0xfb, 0x00), // #fffb00
+		Error = UTFT::fromRGB(0xe6, 0x24, 0x01), // #e62401
+	};
+
+private:
+	ColourField status;
+
+	enum State state;
+
+public:
+	Status(PixelNumber px, PixelNumber py, PixelNumber pw, PixelNumber ph, enum State state=Normal) :
+		status(py, px, pw, ph), state(state) {
+		status.SetColours(state, state);
+	};
 	~Status() {};
 
 	void SetState(enum State val) { state = val; };
