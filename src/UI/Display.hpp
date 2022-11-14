@@ -119,7 +119,7 @@ public:
 	PixelNumber GetMinY() const { return y; }
 	PixelNumber GetMaxY() const { return y + GetHeight() - 1; }
 
-	PixelNumber GetHeight() const { return height; }
+	virtual PixelNumber GetHeight() const { return height; }
 	PixelNumber GetWidth() const { return width; }
 
 	void SetPositionAndWidth(PixelNumber newX, PixelNumber newWidth);
@@ -240,7 +240,8 @@ protected:
 
 	virtual void PrintText() const = 0;
 
-	FieldWithText(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, TextAlignment pa, bool withBorder, bool isUnderlined = false)
+	FieldWithText(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph,
+			TextAlignment pa, bool withBorder = false, bool isUnderlined = false)
 		: DisplayField(py, px, pw, ph), font(DisplayField::defaultFont), align(pa)
 	{
 		underlined = isUnderlined;
@@ -365,7 +366,7 @@ protected:
 
 public:
 	StaticTextField(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, PixelNumber marginLeft, PixelNumber marginRight, TextAlignment pa, const char * _ecv_array null pt, bool isUnderlined = false)
-		: FieldWithText(py, px, pw, ph, pa, false, isUnderlined), text(pt), marginLeft(marginLeft), marginRight(marginRight)
+		: FieldWithText(py, px, pw, ph, pa, true, isUnderlined), text(pt), marginLeft(marginLeft), marginRight(marginRight)
 	{
 		SetTextRows(pt);
 	}
@@ -481,7 +482,9 @@ protected:
 	size_t PrintText(size_t offset) const override;
 
 public:
-	CharButton(PixelNumber py, PixelNumber px, PixelNumber pw, char pc, event_t e);
+	CharButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, char pc, event_t e);
+	CharButton(PixelNumber py, PixelNumber px, PixelNumber pw, char pc, event_t e) :
+		CharButton(py, px, pw, 0, pc, e) {};
 };
 
 // Base class for a row of related buttons with the same event
@@ -493,7 +496,9 @@ protected:
 	PixelNumber step;
 
 public:
-	ButtonRow(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ps, unsigned int nb, event_t e);
+	ButtonRow(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, PixelNumber ps, unsigned int nb, event_t e);
+	ButtonRow(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ps, unsigned int nb, event_t e) :
+		ButtonRow(py, px, pw, 0, ps, nb, e) {};
 };
 
 class ButtonRowWithText : public ButtonRow

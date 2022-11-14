@@ -38,7 +38,7 @@ DisplayField::DisplayField(PixelNumber py, PixelNumber px, PixelNumber pw)
 
 DisplayField::DisplayField(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph)
 	: y(py), x(px), width(pw), height(ph), fcolour(defaultFcolour), bcolour(defaultBcolour),
-		changed(true), visible(true), underlined(false), border(false), textRows(1),
+		changed(true), visible(true), underlined(false), border(true), textRows(1),
 		next(nullptr), children(nullptr)
 {
 }
@@ -628,7 +628,7 @@ void FieldWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset,
 			if (full)
 			{
 				lcd.setColor(fcolour);
-				lcd.drawRect(xOffset, yOffset, xOffset + width - 1, yOffset + GetHeight() - 1);
+				lcd.drawRect(x, y, x + width, y + GetHeight());
 			}
 			xOffset += 2;
 			yOffset += 2;
@@ -782,9 +782,9 @@ void ButtonBase::DrawOutline(PixelNumber xOffset, PixelNumber yOffset, bool isPr
 	lcd.setColor((isPressed) ? pressedBackColour : bcolour);
 	// Note that we draw the filled rounded rectangle with the full width but 2 pixels less height than the border.
 	// This means that we start with the requested colour inside the border.
-	lcd.fillRoundRect(x + xOffset, y + yOffset + 1, x + xOffset + width - 1, y + yOffset + GetHeight() - 2, (isPressed) ? pressedGradColour : gradColour, buttonGradStep);
+	lcd.fillRect(x + xOffset, y + yOffset + 1, x + xOffset + width - 1, y + yOffset + GetHeight() - 2, (pressed) ? pressedGradColour : gradColour);
 	lcd.setColor(borderColour);
-	lcd.drawRoundRect(x + xOffset, y + yOffset, x + xOffset + width - 1, y + yOffset + GetHeight() - 1);
+	lcd.drawRect(x + xOffset, y + yOffset, x + xOffset + width - 1, y + yOffset + GetHeight() - 1);
 }
 
 void ButtonBase::CheckEvent(PixelNumber x, PixelNumber y, int& bestError, ButtonPress& best) /*override*/
@@ -860,8 +860,8 @@ void ButtonWithText::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset
 	}
 }
 
-CharButton::CharButton(PixelNumber py, PixelNumber px, PixelNumber pw, char pc, event_t e)
-	: ButtonWithText(py, px, pw)
+CharButton::CharButton(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, char pc, event_t e)
+	: ButtonWithText(py, px, pw, ph)
 {
 	SetEvent(e, (int)pc);
 }
@@ -1037,8 +1037,8 @@ size_t FloatButton::PrintText(size_t offset) const
 	return ret;
 }
 
-ButtonRow::ButtonRow(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ps, unsigned int nb, event_t e)
-	: ButtonBase(py, px, pw), numButtons(nb), whichPressed(-1), step(ps)
+ButtonRow::ButtonRow(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph, PixelNumber ps, unsigned int nb, event_t e)
+	: ButtonBase(py, px, pw, ph), numButtons(nb), whichPressed(-1), step(ps)
 {
 	evt = e;
 }
