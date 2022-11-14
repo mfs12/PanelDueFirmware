@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <cstring>
 
+#include <main.hpp>
 
 #include <Hardware/Mem.hpp>
 #include <Hardware/UTFT.hpp>
@@ -2326,7 +2327,24 @@ int main(void)
 			}
 		} while (SystemTick::GetTickCount() - now < 5000);		// hold it there for 5 seconds or until touched
 	}
+#if 1
+	int ret;
 
+	ret = main_init();
+	if (ret) {
+		dbg("main init failed", ret);
+		return -1;
+	}
+
+	do {
+		ret = main_run(touch);
+	} while (ret == 0);
+
+	dbg("main run ended with %d\r\n", ret);
+	return -1;
+#endif
+
+#if 0
 	mgr.Refresh(true);								// draw the screen for the first time
 	UI::UpdatePrintingFields();
 
@@ -2605,7 +2623,9 @@ int main(void)
 				lastPollTime = SystemTick::GetTickCount();
 			}
 		}
+
 	}
+#endif
 }
 
 // Pure virtual function call handler, to avoid pulling in large chunks of the standard library
