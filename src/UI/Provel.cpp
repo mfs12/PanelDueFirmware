@@ -314,6 +314,9 @@ ButtonDouble::ButtonDouble(
 	button_left(y, x, width / 2, height, text_left, nullEvent, 0),
 	button_right(y, x + width / 2, width / 2, height, text_right, nullEvent, 0)
 {
+	button_left.SetColours(UTFT::fromRGB(0xff, 0xff, 0xff), UTFT::fromRGB(0x8a, 0x8a, 0x8a));
+	button_right.SetColours(UTFT::fromRGB(0xff, 0xff, 0xff), UTFT::fromRGB(0x8a, 0x8a, 0x8a));
+
 	group.AddChild(&button_left);
 	group.AddChild(&button_right);
 }

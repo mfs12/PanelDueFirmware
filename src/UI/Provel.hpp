@@ -102,7 +102,9 @@ public:
 		PixelNumber x, PixelNumber y,
 		PixelNumber width, PixelNumber height,
 		const char *text, event_t e, int param
-	) : button(x, y, width, text, e, param) {};
+	) : button(y, x, width, height, text, e, param) {
+		button.SetColours(UTFT::fromRGB(0xff, 0xff, 0xff), UTFT::fromRGB(0x8a, 0x8a, 0x8a));
+	};
 	~Button() {};
 
 	DisplayField *Get() { return &button; };
