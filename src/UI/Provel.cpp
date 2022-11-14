@@ -14,7 +14,7 @@
 
 #include "Version.hpp"
 
-#define DEBUG 2
+#define DEBUG 0
 #include "Debug.hpp"
 
 //
@@ -60,6 +60,12 @@
 //
 
 namespace Provel {
+
+#define PROVEL_TITLE_MARGIN_LEFT 20ul
+#define PROVEL_TITLE_MARGIN_RIGHT 20ul
+
+#define PROVEL_TEXT_MARGIN_LEFT 20ul
+#define PROVEL_TEXT_MARGIN_RIGHT 20ul
 
 Provel::Provel() : screens(nullptr)
 {
@@ -268,12 +274,16 @@ int Element::ProcessTouch(Touch &event)
 
 
 Text::Text(PixelNumber x, PixelNumber y, PixelNumber width, PixelNumber height, const char *ptext) :
-	text(y, x, width, TextAlignment::Right, ptext, false)
+	text(y, x, width, height,
+		PROVEL_TEXT_MARGIN_LEFT, PROVEL_TEXT_MARGIN_RIGHT,
+		TextAlignment::Right, ptext, false)
 {
 }
 
 Title::Title(PixelNumber x, PixelNumber y, PixelNumber width, PixelNumber height, const char *title) :
-	text(y, x, width, TextAlignment::Left, title, false)
+	text(y, x, width, height,
+		PROVEL_TITLE_MARGIN_LEFT, PROVEL_TITLE_MARGIN_RIGHT,
+		TextAlignment::Left, title, false)
 {
 }
 
@@ -289,8 +299,8 @@ ButtonDouble::ButtonDouble(
 		PixelNumber width, PixelNumber height,
 		const char *text_left, const char *text_right) :
 	group(y, x, width, height),
-	button_left(y, x, width / 2, text_left, nullEvent, 0),
-	button_right(y, x + width / 2, width / 2, text_right, nullEvent, 0)
+	button_left(y, x, width / 2, height, text_left, nullEvent, 0),
+	button_right(y, x + width / 2, width / 2, height, text_right, nullEvent, 0)
 {
 	group.AddChild(&button_left);
 	group.AddChild(&button_right);
