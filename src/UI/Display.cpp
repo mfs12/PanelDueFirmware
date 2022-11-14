@@ -579,6 +579,15 @@ void ColourGradientField::Refresh(bool full, PixelNumber xOffset, PixelNumber yO
 	}
 }
 
+void ColourField::Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset)
+{
+	if (full || changed)
+	{
+		DrawOutline(xOffset, yOffset);
+		changed = false;
+	}
+}
+
 #if DISPLAY_HEIGHT_STATIC == 0
 PixelNumber FieldWithText::GetHeight() const
 {

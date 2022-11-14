@@ -218,6 +218,15 @@ public:
 	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override;
 };
 
+class ColourField : public DisplayField
+{
+public:
+	ColourField(PixelNumber py, PixelNumber px, PixelNumber pw, PixelNumber ph)
+		: DisplayField(py, px, pw, ph) {};
+
+	void Refresh(bool full, PixelNumber xOffset, PixelNumber yOffset) override;
+};
+
 // Base class for fields displaying text
 class FieldWithText : public DisplayField
 {
