@@ -22,11 +22,17 @@ static Provel::ScreenPurging *purging;
 static Provel::ScreenWarning *warning;
 static Provel::ScreenZCalibrate *zCalibrate;
 
-int main_init()
+#define MAIN_SCREEN_PUSH_DELAY 1000
+
+int mainInit()
 {
 	//UTFT lcd(DISPLAY_CONTROLLER, 15, 14, 0, 39);
 
 	ui = new Provel::Provel();
+
+	dbg("STARTING\r\n");
+
+#if 1
 	splash = new Provel::ScreenSplash();
 	home = new Provel::ScreenHoming();
 	fileLoaded = new Provel::ScreenFileLoaded();
@@ -40,61 +46,63 @@ int main_init()
 	warning = new Provel::ScreenWarning();
 	zCalibrate = new Provel::ScreenZCalibrate();
 
-	dbg("STARTING\r\n");
-
-#if 0
 	dbg("splash\r\n");
 	ui->Push(splash);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("home\r\n");
 	ui->Push(home);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("file loaded\r\n");
 	ui->Push(fileLoaded);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("fault\r\n");
 	ui->Push(fault);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("loading file\r\n");
 	ui->Push(loading);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("printing\r\n");
 	ui->Push(printing);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("heating\r\n");
 	ui->Push(heating);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("idle\r\n");
 	ui->Push(idle);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("printer\r\n");
 	ui->Push(printer);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("purging\r\n");
 	ui->Push(purging);
-	delay_ms(1000);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 
 	dbg("warning\r\n");
 	ui->Push(warning);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
+#else
+	dbg("creating test screen\r\n");
+	printer = new Provel::ScreenPrinter();
+
+	dbg("push test screen\r\n");
+	//ui->Push(home);
+	ui->Push(printer);
 	delay_ms(1000);
 #endif
-	dbg("z calibrate\r\n");
-	ui->Push(zCalibrate);
-	delay_ms(1000);
 
 	return 0;
 }
 
-static int main_touchUpdate(UTouch &touch, Provel::Touch &event)
+static int mainTouchUpdate(UTouch &touch, Provel::Touch &event)
 {
 	const uint32_t normalTouchDelay = 250;	// how long we ignore new touches for after pressing Set
 	const uint32_t repeatTouchDelay = 100;	// how long we ignore new touches while pressing up/down, to get a reasonable repeat rate
@@ -151,21 +159,28 @@ static int main_touchUpdate(UTouch &touch, Provel::Touch &event)
 	return touched;
 }
 
-int main_run(UTouch &touch)
+int mainRun(UTouch &touch)
 {
 
 	static Provel::Touch event = Provel::Touch(0, 0, Provel::Touch::State::Repeated);
 	int touched;
 	int ret;
 
-	touched = main_touchUpdate(touch, event);
+	touched = mainTouchUpdate(touch, event);
 	if (touched) {
+#if 0		
 		dbg("\r\n");
 		ret = ui->ProcessTouch(event);
 		if (ret) {
 			dbg("failed to process touch event\r\n");
 			return ret;
 		}
+#else
+		if (event.state == Provel::Touch::State::Released)
+		{
+			ui->Pop();
+		}
+#endif
 	}
 #if 1
 	//dbg("\r\n");
