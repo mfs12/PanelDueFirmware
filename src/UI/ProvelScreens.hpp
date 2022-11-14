@@ -36,7 +36,13 @@ public:
 
 class ScreenFileLoaded : public Screen {
 	Title *title;
+	Text *acme;
+	Text *cup;
+	Text *nozzle;
+	Text *time;
+	Text *copoly;
 	ButtonDouble *startOrClear;
+	Status *status;
 
 public:
 	ScreenFileLoaded();
@@ -57,7 +63,8 @@ public:
 
 class ScreenPrinting : public Screen {
 	Title *title;
-	Text *text;
+	Text *acme;
+	Text *time;
 	Status *status;
 
 public:
@@ -67,7 +74,11 @@ public:
 
 class ScreenHeating : public Screen {
 	Title *title;
-	Text *text;
+	Text *acme;
+	Text *print;
+	Text *set;
+	Text *cup;
+	Text *set2;
 	Button *stop;
 	Status *status;
 
@@ -89,7 +100,9 @@ public:
 
 class ScreenPurging : public Screen {
 	Title *title;
-	Text *text;
+	Text *temp;
+	Text *set;
+	Text *time;
 	Button *stop;
 	Status *status;
 
@@ -114,6 +127,7 @@ public:
 
 class ScreenFault : public Screen {
 	Title *title;
+	Text *text;
 	Button *clear;
 	Status *status;
 
@@ -125,6 +139,7 @@ public:
 class ScreenWarning : public Screen {
 	Title *title;
 	Text *text;
+	Status *status;
 
 public:
 	ScreenWarning();
