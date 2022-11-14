@@ -100,16 +100,28 @@ Screen *Provel::Push(Screen *screen)
 
 Screen *Provel::Pop()
 {
+	int ret;
 	Screen *head;
 
 	dbg("screen %p\r\n", screens);
 
 	assert(screens);
 
+	if (!screens->next)
+	{
+		dbg("warning: can close last screen\r\n");
+		return nullptr;
+	}
+
 	head = screens;
 	screens = screens->next;
 
-	head->Shutdown();
+	ret = head->Shutdown();
+	assert(ret == 0);
+
+	head = screens;
+	ret = head->Init(colours);
+	assert(ret == 0);
 
 	return head;
 }

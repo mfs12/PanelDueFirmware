@@ -94,7 +94,6 @@ public:
 	~Element();
 };
 
-
 class Button : public Element {
 	TextButton button;
 
