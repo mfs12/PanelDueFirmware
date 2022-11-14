@@ -8,7 +8,7 @@
 #ifndef SRC_VERSION_HPP_
 #define SRC_VERSION_HPP_
 
-#define VERSION_TEXT_MAIN		"3.4.2-pre1"
+#define VERSION_TEXT_MAIN		"3.4.2-pre2"
 
 #define VERSION_TEXT	VERSION_TEXT_MAIN "+provel"
 
