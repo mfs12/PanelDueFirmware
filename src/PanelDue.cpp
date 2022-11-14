@@ -2330,14 +2330,14 @@ int main(void)
 #if 1
 	int ret;
 
-	ret = main_init();
+	ret = mainInit();
 	if (ret) {
 		dbg("main init failed", ret);
 		return -1;
 	}
 
 	do {
-		ret = main_run(touch);
+		ret = mainRun(touch);
 	} while (ret == 0);
 
 	dbg("main run ended with %d\r\n", ret);
