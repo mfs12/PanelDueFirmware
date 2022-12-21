@@ -243,4 +243,20 @@ ScreenZCalibrate::~ScreenZCalibrate()
 {
 }
 
+
+ScreenGcode::ScreenGcode()
+{
+	action = new ActionGcode("M115\n");
+
+	title = new Title(PROVEL_SCREENS_LINE_ROW(0), PROVEL_SCREENS_LINE_COL(0), PROVEL_SCREENS_LINE_WIDTH, PROVEL_SCREENS_LINE_HEIGHT, "title: Gcode Test");
+	gcode = new Button(PROVEL_SCREENS_LINE_ROW(0), PROVEL_SCREENS_LINE_COL(6), PROVEL_SCREENS_LINE_WIDTH, PROVEL_SCREENS_LINE_HEIGHT, "btn: Gcode", 0, 0, action);
+
+	Add(title);
+	Add(gcode);
+}
+
+ScreenGcode::~ScreenGcode()
+{
+}
+
 }

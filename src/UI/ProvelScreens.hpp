@@ -2,6 +2,7 @@
 #define UI_PROVEL_SCREENS_HPP 1
 
 #include "Provel.hpp"
+#include "ProvelAction.hpp"
 
 namespace Provel {
 
@@ -146,7 +147,15 @@ public:
 	~ScreenWarning();
 };
 
+class ScreenGcode : public Screen {
+	Title *title;
+	Button *gcode;
+	ActionGcode *action;
+
+public:
+	ScreenGcode();
+	~ScreenGcode();
+};
+
 }
-
-
 #endif
