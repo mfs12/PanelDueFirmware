@@ -25,7 +25,9 @@ void SysTick_Handler()
 	wdt_restart(WDT);
 	++SystemTick::tickCount;
 	Buzzer::Tick();
+#if PANELDUE
 	UI::Tick();
+#endif
 }
 
 // End
