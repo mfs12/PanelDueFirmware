@@ -568,7 +568,6 @@ static struct Seq* GetNextSeq(struct Seq *current)
 		current = seqs;
 	}
 
-
 	for (size_t i = current - seqs; i < ARRAY_SIZE(seqs); ++i)
 	{
 		current = &seqs[i];
@@ -883,6 +882,7 @@ void CurrentAlertModeClear()
 	currentAlert.mode = 0;
 }
 
+#if PANELDUE
 static void ActivateScreensaver()
 {
 	if (currentAlert.mode == 2 ||
@@ -914,6 +914,7 @@ static bool DeactivateScreensaver()
 
 	return true;
 }
+#endif
 
 // Factory reset
 void FactoryReset()
@@ -965,10 +966,12 @@ static void Reconnect()
 	SetStatus(OM::PrinterStatus::connecting);
 	ResetSeqs();
 
+#if PANELDUE
 	UI::LastJobFileNameAvailable(false);
 	UI::SetSimulatedTime(0);
 	UI::UpdateDuration(0);
 	UI::UpdateWarmupDuration(0);
+#endif
 }
 
 // Try to get an integer value from a string. If it is actually a floating point value, round it.
@@ -1032,6 +1035,9 @@ static struct SerialIo::SerialIoCbs serial_cbs = {
 
 static void StartReceivedMessage()
 {
+	dbg("\r\n");
+
+#if PANELDUE
 	newMessageSeq = messageSeq;
 	MessageLog::BeginNewMessage();
 	FileManager::BeginNewMessage();
@@ -1043,11 +1049,11 @@ static void StartReceivedMessage()
 		ThumbnailInit(thumbnail);
 		memset(&thumbnailData, 0, sizeof(thumbnailData));
 	}
+#endif
 }
 
 static void EndReceivedMessage()
 {
-
 	lastResponseTime = SystemTick::GetTickCount();
 
 	if (currentRespSeq != nullptr)
@@ -1057,7 +1063,7 @@ static void EndReceivedMessage()
 		currentRespSeq = nullptr;
 	}
 	outOfBuffers = false;							// Reset the out-of-buffers flag
-
+#if PANELDUE
 	if (newMessageSeq != messageSeq)
 	{
 		messageSeq = newMessageSeq;
@@ -1119,6 +1125,7 @@ static void EndReceivedMessage()
 		}
 		break;
 	}
+#endif
 }
 
 void HandleOutOfBufferResponse()
@@ -2243,6 +2250,62 @@ static pwm_channel_t backlightPwm =
 #endif
 };
 
+static int commUpdate()
+{
+	const uint32_t now = SystemTick::GetTickCount();
+
+	SerialIo::CheckInput();
+
+	if (now > lastResponseTime + 3 * (printerPollInterval + printerResponseTimeout))
+	{
+		Reconnect();
+	}
+	else if (lastResponseTime >= lastPollTime &&
+		 (now > lastPollTime + printerPollInterval ||
+		 !initialized ||
+		 thumbnailContext.state == ThumbnailState::DataRequest))
+	{
+		currentReqSeq = GetNextSeq(currentReqSeq);
+		if (currentReqSeq != nullptr)
+		{
+			dbg("requesting %s\n", currentReqSeq->key);
+			SerialIo::Sendf("M409 K\"%s\" F\"%s\"\n", currentReqSeq->key, currentReqSeq->flags);
+			lastPollTime = SystemTick::GetTickCount();
+		}
+		else
+		{
+			// Once we get here the first time we will have work all seqs once
+			if (!initialized)
+			{
+				dbg("seqs init DONE\n");
+				initialized = true;
+			}
+
+			// check if specific info is needed
+			bool sent = false;
+			if (OkToSend())
+			{
+				//sent = FileManager::ProcessTimers();
+			}
+
+			// if nothing was fetched do a status update
+			if (!sent)
+			{
+				SerialIo::Sendf("M409 F\"d99f\"\n");
+			}
+			lastPollTime = SystemTick::GetTickCount();
+		}
+	}
+	else if (now > lastPollTime + printerPollInterval + printerResponseTimeout)  // request timeout
+	{
+		dbg("request timeout\n");
+		SerialIo::Sendf("M409 F\"d99f\"\n");
+		lastPollTime = SystemTick::GetTickCount();
+	}
+
+	return 0;
+}
+
 /**
  * \brief Application entry point.
  *
@@ -2327,6 +2390,15 @@ int main(void)
 
 	UpdatePollRate(false);
 
+	// Sort the fieldTable
+	qsort(
+			fieldTable,
+			ARRAY_SIZE(fieldTable),
+			sizeof(FieldTableEntry),
+			compare<FieldTableEntry>);
+
+	lastActionTime = SystemTick::GetTickCount();
+
 	MessageLog::Init();
 
 	// Display the splash screen if one has been appended to the file, unless it was a software reset (we use software reset to change the language or colour scheme)
@@ -2356,14 +2428,24 @@ int main(void)
 	}
 
 	do {
+		ret = commUpdate();
+		if (ret) {
+			dbg("communication update failed %d\r\n", ret);
+			break;
+		}
+
 		ret = mainRun(touch);
+		if (ret) {
+			dbg("main update failed %d\r\n", ret);
+			break;
+		}
 	} while (ret == 0);
 
 	dbg("main run ended with %d\r\n", ret);
 	return -1;
 #endif
 
-#if 0
+#if PANELDUE
 	mgr.Refresh(true);								// draw the screen for the first time
 	UI::UpdatePrintingFields();
 
