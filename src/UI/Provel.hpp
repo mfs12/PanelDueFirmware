@@ -3,6 +3,7 @@
 
 #include "UI/ColourSchemes.hpp"
 #include "UI/Display.hpp"
+#include "UI/ProvelAction.hpp"
 #include "UI/UserInterfaceConstants.hpp"
 
 #include "Version.hpp"
@@ -96,15 +97,22 @@ public:
 
 class Button : public Element {
 	TextButton button;
+	Action *action;
 
 public:
 	Button(
 		PixelNumber x, PixelNumber y,
 		PixelNumber width, PixelNumber height,
-		const char *text, event_t e, int param
-	) : button(y, x, width, height, text, e, param) {
+		const char *text, event_t e, int param,
+		Action *action
+	) : button(y, x, width, height, text, e, param), action(action) {
 		button.SetColours(UTFT::fromRGB(0xff, 0xff, 0xff), UTFT::fromRGB(0x8a, 0x8a, 0x8a));
 	};
+	Button(
+		PixelNumber x, PixelNumber y,
+		PixelNumber width, PixelNumber height,
+		const char *text, event_t e, int param
+	) : Button(x, y, width, height, text, e, param, nullptr) {};
 	~Button() {};
 
 	DisplayField *Get() { return &button; };

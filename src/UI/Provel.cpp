@@ -302,8 +302,24 @@ Title::Title(PixelNumber x, PixelNumber y, PixelNumber width, PixelNumber height
 
 int Button::ProcessTouch(Touch &event)
 {
-	button.Press(event.state == Touch::State::Pressed, 0);
-	return 0;
+	dbg("Button %08x\r\n", action);
+
+	button.Press(
+		event.state == Touch::State::Pressed ||
+		event.state == Touch::State::Repeated, 0);
+
+	if (event.state != Touch::State::Pressed)
+	{
+		return 0;
+	}
+
+	if (!action)
+	{
+		return 0;
+	}
+
+	dbg("executing... %p\r\n", action);
+	return action->Execute();
 }
 
 ButtonDouble::ButtonDouble(
