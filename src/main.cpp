@@ -22,7 +22,9 @@ static Provel::ScreenPurging *purging;
 static Provel::ScreenWarning *warning;
 static Provel::ScreenZCalibrate *zCalibrate;
 
-#define MAIN_SCREEN_PUSH_DELAY 1000
+static Provel::ScreenGcode *gCode;
+
+#define MAIN_SCREEN_PUSH_DELAY 100
 
 int mainInit()
 {
@@ -89,14 +91,20 @@ int mainInit()
 	dbg("warning\r\n");
 	ui->Push(warning);
 	delay_ms(MAIN_SCREEN_PUSH_DELAY);
+
+	dbg("z calbrate\r\n");
+	ui->Push(zCalibrate);
+	delay_ms(MAIN_SCREEN_PUSH_DELAY);
 #else
+#if 1
 	dbg("creating test screen\r\n");
-	printer = new Provel::ScreenPrinter();
+	gCode = new Provel::ScreenGcode();
 
 	dbg("push test screen\r\n");
 	//ui->Push(home);
-	ui->Push(printer);
+	ui->Push(gCode);
 	delay_ms(1000);
+#endif
 #endif
 
 	return 0;
@@ -168,7 +176,7 @@ int mainRun(UTouch &touch)
 
 	touched = mainTouchUpdate(touch, event);
 	if (touched) {
-#if 0		
+#if 1
 		dbg("\r\n");
 		ret = ui->ProcessTouch(event);
 		if (ret) {
