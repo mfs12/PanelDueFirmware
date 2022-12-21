@@ -943,10 +943,10 @@ static void SetStatus(OM::PrinterStatus newStatus)
 	if (newStatus != status)
 	{
 		dbg("printer status %d -> %d\n", status, newStatus);
-		UI::ChangeStatus(status, newStatus);
+		//UI::ChangeStatus(status, newStatus);
 
 		status = newStatus;
-		UI::UpdatePrintingFields();
+		//UI::UpdatePrintingFields();
 
 		lastActionTime = SystemTick::GetTickCount();
 	}
@@ -1261,7 +1261,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			bool b = GetFloat(data, f);
 			if (b && f >= 0.0 && f <= 1.0)
 			{
-				UI::UpdateFanPercent(indices[0], (int)((f * 100.0f) + 0.5f));
+				//UI::UpdateFanPercent(indices[0], (int)((f * 100.0f) + 0.5f));
 			}
 		}
 		break;
@@ -1272,7 +1272,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t heaterNumber;
 			if (GetInteger(data, heaterNumber) && heaterNumber > -1)
 			{
-				UI::SetBedOrChamberHeater(indices[0], heaterNumber);
+				//UI::SetBedOrChamberHeater(indices[0], heaterNumber);
 				for (size_t i = lastBed + 1; i < indices[0]; ++i)
 				{
 					OM::RemoveBed(i, false);
@@ -1287,7 +1287,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t heaterNumber;
 			if (GetInteger(data, heaterNumber) && heaterNumber > -1)
 			{
-				UI::SetBedOrChamberHeater(indices[0], heaterNumber, false);
+				//UI::SetBedOrChamberHeater(indices[0], heaterNumber, false);
 				for (size_t i = lastChamber + 1; i < indices[0]; ++i)
 				{
 					OM::RemoveChamber(i, false);
@@ -1302,7 +1302,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t ival;
 			if (GetInteger(data, ival))
 			{
-				UI::UpdateActiveTemperature(indices[0], ival);
+				//UI::UpdateActiveTemperature(indices[0], ival);
 			}
 		}
 		break;
@@ -1312,7 +1312,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float fval;
 			if (GetFloat(data, fval))
 			{
-				UI::UpdateCurrentTemperature(indices[0], fval);
+				//UI::UpdateCurrentTemperature(indices[0], fval);
 			}
 		}
 		break;
@@ -1322,7 +1322,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t ival;
 			if (GetInteger(data, ival))
 			{
-				UI::UpdateStandbyTemperature(indices[0], ival);
+				//UI::UpdateStandbyTemperature(indices[0], ival);
 			}
 		}
 		break;
@@ -1338,7 +1338,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 							sizeof(OM::HeaterStatusMapEntry),
 							compare<OM::HeaterStatusMapEntry>);
 			const OM::HeaterStatus status = (statusFromMap != nullptr) ? statusFromMap->val : OM::HeaterStatus::off;
-			UI::UpdateHeaterStatus(indices[0], status);
+			//UI::UpdateHeaterStatus(indices[0], status);
 		}
 		break;
 
@@ -1348,17 +1348,17 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t duration;
 			if (GetUnsignedInteger(data, duration))
 			{
-				UI::UpdateDuration(duration);
+				//UI::UpdateDuration(duration);
 			}
 			else
 			{
-				UI::UpdateDuration(0);
+				//UI::UpdateDuration(0);
 			}
 		}
 		break;
 
 	case rcvJobFileFilename:
-		UI::PrintingFilenameChanged(data);
+		//UI::PrintingFilenameChanged(data);
 		break;
 
 	case rcvJobFileSize:
@@ -1380,11 +1380,11 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t simulatedTime;
 			if (GetUnsignedInteger(data, simulatedTime))
 			{
-				UI::SetSimulatedTime(simulatedTime);
+				//UI::SetSimulatedTime(simulatedTime);
 			}
 			else
 			{
-				UI::SetSimulatedTime(0);
+				//UI::SetSimulatedTime(0);
 			}
 		}
 		break;
@@ -1396,7 +1396,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 				uint32_t ival;
 				if (GetUnsignedInteger(data, ival))
 				{
-					UI::SetPrintProgressPercent((unsigned int)(((ival*100.0f)/fileSize) + 0.5));
+					//UI::SetPrintProgressPercent((unsigned int)(((ival*100.0f)/fileSize) + 0.5));
 				}
 
 			}
@@ -1404,7 +1404,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 		break;
 
 	case rcvJobLastFileName:
-		UI::LastJobFileNameAvailable(true);	// If we get here there is a filename
+		//UI::LastJobFileNameAvailable(true);	// If we get here there is a filename
 		break;
 
 	case rcvJobLastFileSimulated:
@@ -1412,7 +1412,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			bool lastFileSimulated;
 			if (GetBool(data, lastFileSimulated))
 			{
-				UI::SetLastFileSimulated(lastFileSimulated);
+				//UI::SetLastFileSimulated(lastFileSimulated);
 			}
 		}
 		break;
@@ -1425,7 +1425,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			bool b = GetInteger(data, timeLeft);
 			if (b && timeLeft >= 0 && timeLeft < 10 * 24 * 60 * 60 && PrintInProgress())
 			{
-				UI::UpdateTimesLeft((rde == rcvJobTimesLeftFilament) ? 1 : (rde == rcvJobTimesLeftSlicer) ? 2 : 0, timeLeft);
+				//UI::UpdateTimesLeft((rde == rcvJobTimesLeftFilament) ? 1 : (rde == rcvJobTimesLeftSlicer) ? 2 : 0, timeLeft);
 			}
 		}
 		break;
@@ -1435,11 +1435,11 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t warmUpDuration;
 			if (GetUnsignedInteger(data, warmUpDuration))
 			{
-				UI::UpdateWarmupDuration(warmUpDuration);
+				//UI::UpdateWarmupDuration(warmUpDuration);
 			}
 			else
 			{
-				UI::UpdateWarmupDuration(0);
+				//UI::UpdateWarmupDuration(0);
 			}
 		}
 		break;
@@ -1450,7 +1450,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float f;
 			if (GetFloat(data, f))
 			{
-				UI::SetBabystepOffset(indices[0], f);
+				//UI::SetBabystepOffset(indices[0], f);
 			}
 		}
 		break;
@@ -1460,14 +1460,14 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			bool isHomed;
 			if (indices[0] < MaxTotalAxes && GetBool(data, isHomed))
 			{
-				UI::UpdateHomedStatus(indices[0], isHomed);
+				//UI::UpdateHomedStatus(indices[0], isHomed);
 			}
 		}
 		break;
 
 	case rcvMoveAxesLetter:
 		{
-			UI::SetAxisLetter(indices[0], data[0]);
+			//UI::SetAxisLetter(indices[0], data[0]);
 		}
 		break;
 
@@ -1476,7 +1476,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float fval;
 			if (GetFloat(data, fval))
 			{
-				UI::UpdateAxisPosition(indices[0], fval);
+				//UI::UpdateAxisPosition(indices[0], fval);
 			}
 		}
 		break;
@@ -1486,7 +1486,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			bool visible;
 			if (GetBool(data, visible))
 			{
-				UI::SetAxisVisible(indices[0], visible);
+				//UI::SetAxisVisible(indices[0], visible);
 				if (visible)
 				{
 					++visibleAxesCounted;
@@ -1501,7 +1501,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float offset;
 			if (GetFloat(data, offset))
 			{
-				UI::SetAxisWorkplaceOffset(indices[0], indices[1], offset);
+				//UI::SetAxisWorkplaceOffset(indices[0], indices[1], offset);
 			}
 		}
 		break;
@@ -1511,7 +1511,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float fval;
 			if (GetFloat(data, fval))
 			{
-				UI::UpdateExtrusionFactor(indices[0], (int)((fval * 100.0f) + 0.5));
+				//UI::UpdateExtrusionFactor(indices[0], (int)((fval * 100.0f) + 0.5));
 			}
 		}
 		break;
@@ -1520,7 +1520,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 		if (status != OM::PrinterStatus::configuring && status != OM::PrinterStatus::connecting)
 		{
 			isDelta = (strcasecmp(data, "delta") == 0);
-			UI::UpdateGeometry(numAxes, isDelta);
+			//UI::UpdateGeometry(numAxes, isDelta);
 		}
 		break;
 
@@ -1529,7 +1529,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float fval;
 			if (GetFloat(data, fval))
 			{
-				UI::UpdateSpeedPercent((int) ((fval * 100.0f) + 0.5f));
+				//UI::UpdateSpeedPercent((int) ((fval * 100.0f) + 0.5f));
 			}
 		}
 		break;
@@ -1539,7 +1539,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t workplaceNumber;
 			if (GetUnsignedInteger(data, workplaceNumber))
 			{
-				UI::SetCurrentWorkplaceNumber(workplaceNumber);
+				//UI::SetCurrentWorkplaceNumber(workplaceNumber);
 			}
 		}
 		break;
@@ -1548,7 +1548,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 	case rcvNetworkName:
 		if (status != OM::PrinterStatus::configuring && status != OM::PrinterStatus::connecting)
 		{
-			UI::UpdateMachineName(data);
+			//UI::UpdateMachineName(data);
 		}
 		break;
 
@@ -1559,7 +1559,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			{
 				return;
 			}
-			UI::UpdateIP(data);
+			//UI::UpdateIP(data);
 		}
 		break;
 
@@ -1594,7 +1594,9 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 	case rcvSensorsProbeValue:
 		{
 			if (indices[0] == 0 && indices[1] == 0)			// currently we only handle one probe with one value
-			UI::UpdateZProbe(data);
+			{
+				//UI::UpdateZProbe(data);
+			}
 		}
 		break;
 
@@ -1608,7 +1610,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 				{
 					firmwareFeatures.SetBit(m568TempAndRPM);
 				}
-				UI::SetSpindleActive(indices[0], active);
+				//UI::SetSpindleActive(indices[0], active);
 			}
 
 			for (size_t i = lastSpindle + 1; i < indices[0]; ++i)
@@ -1628,7 +1630,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 				{
 					firmwareFeatures.SetBit(m568TempAndRPM);
 				}
-				UI::SetSpindleCurrent(indices[0], current);
+				//UI::SetSpindleCurrent(indices[0], current);
 			}
 		}
 		break;
@@ -1644,7 +1646,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t speedLimit;
 			if (GetUnsignedInteger(data, speedLimit))
 			{
-				UI::SetSpindleLimit(indices[0], speedLimit, rde == rcvSpindlesMax);
+				//UI::SetSpindleLimit(indices[0], speedLimit, rde == rcvSpindlesMax);
 			}
 		}
 		break;
@@ -1660,7 +1662,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 							sizeof(OM::SpindleStateMapEntry),
 							compare<OM::SpindleStateMapEntry>);
 			const OM::SpindleState state = (statusFromMap != nullptr) ? statusFromMap->val : OM::SpindleState::stopped;
-			UI::SetSpindleState(indices[0], state);
+			//UI::SetSpindleState(indices[0], state);
 		}
 		break;
 
@@ -1670,7 +1672,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			if (GetInteger(data, toolNumber))
 			{
 				firmwareFeatures.ClearBit(m568TempAndRPM);
-				UI::SetSpindleTool(indices[0], toolNumber);
+				//UI::SetSpindleTool(indices[0], toolNumber);
 			}
 		}
 		break;
@@ -1685,7 +1687,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t tool;
 			if (GetInteger(data, tool))
 			{
-				UI::SetCurrentTool(tool);
+				//UI::SetCurrentTool(tool);
 			}
 		}
 		break;
@@ -1693,7 +1695,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 	case rcvStateMessageBox:
 		if (data[0] == 0)
 		{
-			UI::ClearAlert();
+			//UI::ClearAlert();
 		}
 		break;
 
@@ -1784,7 +1786,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t temp;
 			if (GetInteger(data, temp))
 			{
-				UI::UpdateToolTemp(indices[0], indices[1], temp, rde == rcvToolsActive);
+				//UI::UpdateToolTemp(indices[0], indices[1], temp, rde == rcvToolsActive);
 			}
 		}
 		break;
@@ -1794,7 +1796,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t extruder;
 			if (GetUnsignedInteger(data, extruder))
 			{
-				UI::SetToolExtruder(indices[0], extruder);
+				//UI::SetToolExtruder(indices[0], extruder);
 			}
 		}
 		break;
@@ -1804,7 +1806,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t fan;
 			if (GetUnsignedInteger(data, fan))
 			{
-				UI::SetToolFan(indices[0], fan);
+				//UI::SetToolFan(indices[0], fan);
 			}
 		}
 		break;
@@ -1818,7 +1820,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			uint32_t heaterIndex;
 			if (GetUnsignedInteger(data, heaterIndex))
 			{
-				UI::SetToolHeater(indices[0], indices[1], heaterIndex);
+				//UI::SetToolHeater(indices[0], indices[1], heaterIndex);
 			}
 		}
 		break;
@@ -1838,7 +1840,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float offset;
 			if (GetFloat(data, offset))
 			{
-				UI::SetToolOffset(indices[0], indices[1], offset);
+				//UI::SetToolOffset(indices[0], indices[1], offset);
 			}
 		}
 		break;
@@ -1849,7 +1851,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			if (GetInteger(data, spindleNumber))
 			{
 				firmwareFeatures.SetBit(m568TempAndRPM);
-				UI::SetToolSpindle(indices[0], spindleNumber);
+				//UI::SetToolSpindle(indices[0], spindleNumber);
 			}
 		}
 		break;
@@ -1865,7 +1867,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 							sizeof(OM::ToolStatusMapEntry),
 							compare<OM::ToolStatusMapEntry>);
 			const OM::ToolStatus status = (statusFromMap != nullptr) ? statusFromMap->val : OM::ToolStatus::off;
-			UI::UpdateToolStatus(indices[0], status);
+			//UI::UpdateToolStatus(indices[0], status);
 		}
 		break;
 
@@ -1877,11 +1879,11 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 	case rcvPushMessage:
 		if (data[0] == 0)
 		{
-			UI::ClearAlert();
+			//UI::ClearAlert();
 		}
 		else
 		{
-			UI::ProcessSimpleAlert(data);
+			//UI::ProcessSimpleAlert(data);
 		}
 		break;
 
@@ -1940,7 +1942,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			if (GetFloat(data, f))
 			{
 				totalFilament += f;
-				UI::UpdateFileFilament((int)totalFilament);
+				//UI::UpdateFileFilament((int)totalFilament);
 			}
 		}
 		break;
@@ -1949,7 +1951,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 		break;
 
 	case rcvM36GeneratedBy:
-		UI::UpdateFileGeneratedByText(data);
+		//UI::UpdateFileGeneratedByText(data);
 		break;
 
 	case rcvM36Height:
@@ -1957,13 +1959,13 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float f;
 			if (GetFloat(data, f))
 			{
-				UI::UpdateFileObjectHeight(f);
+				//UI::UpdateFileObjectHeight(f);
 			}
 		}
 		break;
 
 	case rcvM36LastModified:
-		UI::UpdateFileLastModifiedText(data);
+		//UI::UpdateFileLastModifiedText(data);
 		break;
 
 	case rcvM36LayerHeight:
@@ -1971,7 +1973,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			float f;
 			if (GetFloat(data, f))
 			{
-				UI::UpdateFileLayerHeight(f);
+				//UI::UpdateFileLayerHeight(f);
 			}
 		}
 		break;
@@ -1982,7 +1984,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t sz;
 			if (GetInteger(data, sz) && sz > 0)
 			{
-				UI::UpdatePrintTimeText((uint32_t)sz, rde == rcvM36SimulatedTime);
+				//UI::UpdatePrintTimeText((uint32_t)sz, rde == rcvM36SimulatedTime);
 			}
 		}
 		break;
@@ -1992,7 +1994,7 @@ static void ProcessReceivedValue(StringRef id, const char data[], const size_t i
 			int32_t sz;
 			if (GetInteger(data, sz))
 			{
-				UI::UpdateFileSize(sz);
+				//UI::UpdateFileSize(sz);
 			}
 		}
 		break;
@@ -2116,7 +2118,7 @@ static void ProcessArrayEnd(const char id[], const size_t indices[])
 			OM::RemoveBed(lastBed + 1, true);
 			if (initialized)
 			{
-				UI::AllToolsSeen();
+				//UI::AllToolsSeen();
 			}
 		}
 		else if (strcasecmp(id, "heat:chamberHeaters^") == 0)
@@ -2124,7 +2126,7 @@ static void ProcessArrayEnd(const char id[], const size_t indices[])
 			OM::RemoveChamber(lastChamber + 1, true);
 			if (initialized)
 			{
-				UI::AllToolsSeen();
+				//UI::AllToolsSeen();
 			}
 		}
 	}
@@ -2132,7 +2134,7 @@ static void ProcessArrayEnd(const char id[], const size_t indices[])
 	{
 		OM::RemoveAxis(indices[0], true);
 		numAxes = constrain<unsigned int>(visibleAxesCounted, MIN_AXES, MaxDisplayableAxes);
-		UI::UpdateGeometry(numAxes, isDelta);
+		//UI::UpdateGeometry(numAxes, isDelta);
 	}
 	else if (currentResponseType == rcvOMKeySpindles)
 	{
@@ -2141,7 +2143,7 @@ static void ProcessArrayEnd(const char id[], const size_t indices[])
 			OM::RemoveSpindle(lastSpindle + 1, true);
 			if (initialized)
 			{
-				UI::AllToolsSeen();
+				//UI::AllToolsSeen();
 			}
 		}
 	}
@@ -2152,20 +2154,22 @@ static void ProcessArrayEnd(const char id[], const size_t indices[])
 			OM::RemoveTool(lastTool + 1, true);
 			if (initialized)
 			{
-				UI::AllToolsSeen();
+				//UI::AllToolsSeen();
 			}
 		}
 		else if (strcasecmp(id, "tools^:extruders^") == 0 && indices[1] == 0)
 		{
-			UI::SetToolExtruder(indices[0], -1);			// No extruder defined for this tool
+			//UI::SetToolExtruder(indices[0], -1);			// No extruder defined for this tool
 		}
 		else if (strcasecmp(id, "tools^:heaters^") == 0)
 		{
+#if PANELDUE
 			// Remove all heaters no longer defined
 			if (UI::RemoveToolHeaters(indices[0], indices[1]) && initialized)
 			{
 				UI::AllToolsSeen();
 			}
+#endif
 		}
 	}
 	else if (currentResponseType == rcvOMKeyVolumes && strcasecmp(id, "volumes^") == 0)
