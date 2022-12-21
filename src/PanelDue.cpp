@@ -705,14 +705,19 @@ static void UpdatePollRate(bool idle)
 }
 
 // Initialise the LCD and user interface. The non-volatile data must be set up before calling this.
-static void InitLcd()
+static void InitLcd(DisplayOrientation orientation)
 {
-	lcd.InitLCD(DisplayOrientation::Portrait, IS_24BIT, IS_ER);
+	lcd.InitLCD(orientation, IS_24BIT, IS_ER);
 	colours = &colourSchemes[0];
+	UI::InitColourScheme(colours);
 
 	lcd.fillScr(black);	// clear lcd memory
 	Delay(100);
+
+	backlight->SetDimBrightness(nvData.GetBrightness() / 8);
+	backlight->SetNormalBrightness(nvData.GetBrightness());
 	backlight->SetState(BacklightStateNormal);
+
 
 	dbg("LCD init DONE\r\n");
 }
@@ -768,10 +773,28 @@ void DoTouchCalib(PixelNumber x, PixelNumber y, PixelNumber altX, PixelNumber al
 
 void CalibrateTouch()
 {
+	dbg("\r\n");
+
+	InitLcd(DisplayOrientation::Landscape);
+
+	mgr.Init(colours->defaultBackColour);
+	DisplayField::SetDefaultColours(colours->labelTextColour, colours->defaultBackColour);
+#if 0
+	//StaticTextField *touchCalibInstruction = new StaticTextField(DisplayY/2 - 10, 0, DisplayX, TextAlignment::Centre, "touch the spot");
+
+
+	dbg("\r\n");
 	DisplayField *oldRoot = mgr.GetRoot();
+	dbg("\r\n");
 	mgr.SetRoot(touchCalibInstruction);
+	dbg("\r\n");
+#else
+	DisplayField *oldRoot = mgr.GetRoot();
+	mgr.SetRoot(nullptr);
+#endif
 	mgr.Refresh(true);
 
+	dbg("\r\n");
 	touch.init(DisplayX, DisplayY, DefaultTouchOrientAdjust);				// initialize the driver and clear any existing calibration
 
 	// Draw spots on the edges of the screen, one at a time, and ask the user to touch them.
@@ -795,7 +818,14 @@ void CalibrateTouch()
 	touch.calibrate(nvData.xmin, nvData.xmax, nvData.ymin, nvData.ymax, touchCalibMargin);
 
 	mgr.SetRoot(oldRoot);
-	mgr.Refresh(true);
+	if (oldRoot)
+	{
+		mgr.Refresh(true);
+	}
+	else
+	{
+		lcd.fillScr(black);
+	}
 }
 
 void MirrorDisplay()
@@ -2220,7 +2250,7 @@ static pwm_channel_t backlightPwm =
  */
 int main(void)
 {
-	bool initializedSettings = false;
+	bool defaultSettings = false;
 
 	SystemInit();						// set up the clock etc.
 	InitMemory();
@@ -2241,7 +2271,7 @@ int main(void)
 	nvData.Load();
 	if (!nvData.IsValid())
 	{
-		initializedSettings = true;
+		defaultSettings = true;
 		nvData.SetDefaults();
 	}
 	SerialIo::Init(nvData.GetBaudRate(), &serial_cbs);
@@ -2284,27 +2314,16 @@ int main(void)
 	backlight = new Backlight(&backlightPwm, pwmClockFrequency, 300, 15, 100, 5, 100); // init the backlight
 #endif
 
-	InitLcd();
-	InitTouch();
-
 	// Read parameters from flash memory
-	if (!initializedSettings)
-	{
-		// The touch panel has already been calibrated
-		touch.init(DisplayX, DisplayY, nvData.touchOrientation);
-		touch.calibrate(nvData.xmin, nvData.xmax, nvData.ymin, nvData.ymax, touchCalibMargin);
-		savedNvData = nvData;
-	}
-	else
+	if (defaultSettings)
 	{
 		// The touch panel has not been calibrated, and we do not know which way up it is
 		CalibrateTouch();							// this includes the touch driver initialisation
 		SaveSettings();
 	}
 
-	backlight->SetDimBrightness(nvData.GetBrightness() / 8);
-	backlight->SetNormalBrightness(nvData.GetBrightness());
-	backlight->SetState(BacklightStateNormal);
+	InitLcd(DisplayOrientation::Portrait);
+	InitTouch();
 
 	UpdatePollRate(false);
 
