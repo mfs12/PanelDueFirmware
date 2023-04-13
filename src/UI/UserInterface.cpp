@@ -20,6 +20,7 @@
 
 #include "Icons/Icons.hpp"
 #include "Library/Misc.hpp"
+#include "ObjectModel/BedOrChamber.hpp"
 #include "ObjectModel/PrinterStatus.hpp"
 #include "PanelDue.hpp"
 #include "Version.hpp"
@@ -2341,7 +2342,7 @@ namespace UI
 					case evAdjustBedActiveTemp:
 					case evAdjustChamberActiveTemp:
 						{
-							int bedOrChamberIndex = bp.GetIParam();
+							int bedOrChamberIndex = fieldBeingAdjusted.GetIParam();
 							const bool isBed = eventOfFieldBeingAdjusted == evAdjustBedActiveTemp;
 							const auto bedOrChamber = isBed ? OM::GetBed(bedOrChamberIndex) : OM::GetChamber(bedOrChamberIndex);
 							if (bedOrChamber == nullptr)
@@ -2356,7 +2357,7 @@ namespace UI
 					case evAdjustBedStandbyTemp:
 					case evAdjustChamberStandbyTemp:
 						{
-							int bedOrChamberIndex = bp.GetIParam();
+							int bedOrChamberIndex = fieldBeingAdjusted.GetIParam();
 							const bool isBed = eventOfFieldBeingAdjusted == evAdjustBedStandbyTemp;
 							const auto bedOrChamber = isBed ? OM::GetBed(bedOrChamberIndex) : OM::GetChamber(bedOrChamberIndex);
 							if (bedOrChamber == nullptr)
