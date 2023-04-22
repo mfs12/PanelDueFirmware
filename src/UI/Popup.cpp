@@ -146,7 +146,7 @@ void AlertPopup::Set(const Alert &alert)
 			{
 				dbg("show text %d %s\n", i, alert.choices[i].c_str());
 				selectionMap[i]->SetText(alert.choices[i].c_str());
-				selectionMap[i]->Show(true);
+				selectionMap[i]->Show(alert.choices[i].strlen() > 0);
 			}
 		}
 #endif
