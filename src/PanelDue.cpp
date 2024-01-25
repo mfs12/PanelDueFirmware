@@ -181,7 +181,7 @@ static struct ThumbnailContext {
 	void Init()
 	{
 		state = ThumbnailState::Init;
-		ThumbnailInit(thumbnail);
+		thumbnail.Init();
 		parseErr = 0;
 		err = 0;
 		size = 0;
@@ -1087,7 +1087,7 @@ static void EndReceivedMessage()
 	case ThumbnailState::DataWait:
 		break;
 	case ThumbnailState::Header:
-		if (!ThumbnailIsValid(thumbnailCurrent.thumbnail))
+		if (!thumbnailCurrent.thumbnail.IsValid())
 		{
 			dbg("thumbnail meta invalid.\n");
 			break;
@@ -1095,13 +1095,13 @@ static void EndReceivedMessage()
 		thumbnailCurrent.state = ThumbnailState::DataRequest;
 		break;
 	case ThumbnailState::Data:
-		if (!ThumbnailDataIsValid(thumbnailData))
+		if (!thumbnailData.IsValid())
 		{
 			dbg("thumbnail meta or data invalid.\n");
 			thumbnailCurrent.state = ThumbnailState::Init;
 			break;
 		}
-		if ((ret = ThumbnailDecodeChunk(thumbnailCurrent.thumbnail, thumbnailData, UI::UpdateFileThumbnailChunk)) < 0)
+		if ((ret = thumbnailCurrent.thumbnail.DecodeChunk(thumbnailData, UI::UpdateFileThumbnailChunk)) < 0)
 		{
 			dbg("failed to decode thumbnail chunk %d.\n", ret);
 			thumbnailCurrent.state = ThumbnailState::Init;
@@ -2160,7 +2160,7 @@ static void ProcessArrayElementEnd(const char id[], const size_t index)
 	UNUSED(index);
 
 	// check if new thumbnail fits better
-	if ((strcmp(id, "thumbnails^") == 0) && ThumbnailIsValid(thumbnailNew.thumbnail))
+	if ((strcmp(id, "thumbnails^") == 0) && thumbnailNew.thumbnail.IsValid())
 	{
 		if (thumbnailCurrent.thumbnail.height < thumbnailNew.thumbnail.height &&
 		    thumbnailNew.thumbnail.height <= fpThumbnail->GetHeight() &&
