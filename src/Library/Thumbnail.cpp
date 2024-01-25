@@ -28,21 +28,6 @@ bool Thumbnail::IsValid()
 	return true;
 }
 
-bool ThumbnailData::IsValid()
-{
-	if (size == 0)
-	{
-		return false;
-	}
-
-	if (!buffer)
-	{
-		return false;
-	}
-
-	return true;
-}
-
 int Thumbnail::Init()
 {
 	width = 0;
@@ -124,3 +109,19 @@ int Thumbnail::DecodeChunk(struct ThumbnailData &data, ThumbnailProcessCb callba
 
 	return qoi_decode_state_get(&qoi) != qoi_decoder_done;
 }
+
+bool ThumbnailData::IsValid()
+{
+	if (size == 0)
+	{
+		return false;
+	}
+
+	if (!buffer)
+	{
+		return false;
+	}
+
+	return true;
+}
+
