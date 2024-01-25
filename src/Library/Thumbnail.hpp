@@ -7,6 +7,7 @@
 #include "qoi.h"
 
 struct Thumbnail;
+struct ThumbnailData;
 
 typedef bool (*ThumbnailProcessCb)(const struct Thumbnail &thumbnail, uint32_t pixels_offset, const qoi_rgba_t *pixels, size_t pixels_count);
 
