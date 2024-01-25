@@ -519,65 +519,63 @@ static FieldTableEntry fieldTable[] =
 	{ rcvControlCommand,				"controlCommand" },
 };
 
-enum SeqState {
-	SeqStateInit,
-	SeqStateOk,
-	SeqStateUpdate,
-	SeqStateError,
-	SeqStateDisabled
-};
-
 static struct Seq {
 	const ReceivedDataEvent event;
 	const ReceivedDataEvent seqid;
 
 	uint16_t lastSeq;
-	enum SeqState state;
+	enum State {
+		Init,
+		Ok,
+		Update,
+		Error,
+		Disabled
+	} state;
 
 	const char * _ecv_array const key;
 	const char * _ecv_array const flags;
 } seqs[] = {
 #if FETCH_NETWORK
-	{ .event = rcvOMKeyNetwork, .seqid = rcvSeqsNetwork, .lastSeq = 0, .state = SeqStateInit, .key = "network", .flags = "v" },
+	{ .event = rcvOMKeyNetwork, .seqid = rcvSeqsNetwork, .lastSeq = 0, .state = Seq::State::Init, .key = "network", .flags = "v" },
 #endif
 #if FETCH_BOARDS
-	{ .event = rcvOMKeyBoards, .seqid = rcvSeqsBoards, .lastSeq = 0, .state = SeqStateInit, .key = "boards", .flags = "v" },
+	{ .event = rcvOMKeyBoards, .seqid = rcvSeqsBoards, .lastSeq = 0, .state = Seq::State::Init, .key = "boards", .flags = "v" },
 #endif
 #if FETCH_MOVE
-	{ .event = rcvOMKeyMove, .seqid = rcvSeqsMove, .lastSeq = 0, .state = SeqStateInit, .key = "move", .flags = "v" },
+	{ .event = rcvOMKeyMove, .seqid = rcvSeqsMove, .lastSeq = 0, .state = Seq::State::Init, .key = "move", .flags = "v" },
 #endif
 #if FETCH_HEAT
-	{ .event = rcvOMKeyHeat, .seqid = rcvSeqsHeat, .lastSeq = 0, .state = SeqStateInit, .key = "heat", .flags = "v" },
+	{ .event = rcvOMKeyHeat, .seqid = rcvSeqsHeat, .lastSeq = 0, .state = Seq::State::Init, .key = "heat", .flags = "v" },
 #endif
 #if FETCH_TOOLS
-	{ .event = rcvOMKeyTools, .seqid = rcvSeqsTools, .lastSeq = 0, .state = SeqStateInit, .key = "tools", .flags = "v" },
+	{ .event = rcvOMKeyTools, .seqid = rcvSeqsTools, .lastSeq = 0, .state = Seq::State::Init, .key = "tools", .flags = "v" },
 #endif
 #if FETCH_SPINDLES
-	{ .event = rcvOMKeySpindles, .seqid = rcvSeqsSpindles, .lastSeq = 0, .state = SeqStateInit, .key = "spindles", .flags = "v" },
+	{ .event = rcvOMKeySpindles, .seqid = rcvSeqsSpindles, .lastSeq = 0, .state = Seq::State::Init, .key = "spindles", .flags = "v" },
 #endif
 #if FETCH_DIRECTORIES
-	{ .event = rcvOMKeyDirectories, .seqid = rcvSeqsDirectories, .lastSeq = 0, .state = SeqStateInit, .key = "directories", .flags = "v" },
+	{ .event = rcvOMKeyDirectories, .seqid = rcvSeqsDirectories, .lastSeq = 0, .state = Seq::State::Init, .key = "directories", .flags = "v" },
 #endif
 #if FETCH_FANS
-	{ .event = rcvOMKeyFans, .seqid = rcvSeqsFans, .lastSeq = 0, .state = SeqStateInit, .key = "fans", .flags = "v" },
+	{ .event = rcvOMKeyFans, .seqid = rcvSeqsFans, .lastSeq = 0, .state = Seq::State::Init, .key = "fans", .flags = "v" },
 #endif
 #if FETCH_INPUTS
-	{ .event = rcvOMKeyInputs, .seqid = rcvSeqsInputs, .lastSeq = 0, .state = SeqStateInit, .key = "inputs", .flags = "v" },
+	{ .event = rcvOMKeyInputs, .seqid = rcvSeqsInputs, .lastSeq = 0, .state = Seq::State::Init, .key = "inputs", .flags = "v" },
 #endif
 #if FETCH_JOB
-	{ .event = rcvOMKeyJob, .seqid = rcvSeqsJob, .lastSeq = 0, .state = SeqStateInit, .key = "job", .flags = "v" },
+	{ .event = rcvOMKeyJob, .seqid = rcvSeqsJob, .lastSeq = 0, .state = Seq::State::Init, .key = "job", .flags = "v" },
 #endif
 #if FETCH_SCANNER
-	{ .event = rcvOMKeyScanner, .seqid = rcvSeqsScanner, .lastSeq = 0, .state = SeqStateInit, .key = "scanner", .flags = "v" },
+	{ .event = rcvOMKeyScanner, .seqid = rcvSeqsScanner, .lastSeq = 0, .state = Seq::State::Init, .key = "scanner", .flags = "v" },
 #endif
 #if FETCH_SENSORS
-	{ .event = rcvOMKeySensors, .seqid = rcvSeqsSensors, .lastSeq = 0, .state = SeqStateInit, .key = "sensors", .flags = "v" },
+	{ .event = rcvOMKeySensors, .seqid = rcvSeqsSensors, .lastSeq = 0, .state = Seq::State::Init, .key = "sensors", .flags = "v" },
 #endif
 #if FETCH_STATE
-	{ .event = rcvOMKeyState, .seqid = rcvSeqsState, .lastSeq = 0, .state = SeqStateInit, .key = "state", .flags = "vn" },
+	{ .event = rcvOMKeyState, .seqid = rcvSeqsState, .lastSeq = 0, .state = Seq::State::Init, .key = "state", .flags = "vn" },
 #endif
 #if FETCH_VOLUMES
-	{ .event = rcvOMKeyVolumes, .seqid = rcvSeqsVolumes, .lastSeq = 0, .state = SeqStateInit, .key = "volumes", .flags = "v" },
+	{ .event = rcvOMKeyVolumes, .seqid = rcvSeqsVolumes, .lastSeq = 0, .state = Seq::State::Init, .key = "volumes", .flags = "v" },
 #endif
 };
 
@@ -595,13 +593,13 @@ static struct Seq* GetNextSeq(struct Seq *current)
 	for (size_t i = current - seqs; i < ARRAY_SIZE(seqs); ++i)
 	{
 		current = &seqs[i];
-		if (current->state == SeqStateError)
+		if (current->state == Seq::State::Error)
 		{
 			// skip and re-init if last request had an error
-			current->state = SeqStateInit;
+			current->state = Seq::State::Init;
 			continue;
 		}
-		if (current->state == SeqStateInit || current->state == SeqStateUpdate)
+		if (current->state == Seq::State::Init || current->state == Seq::State::Update)
 		{
 			return current;
 		}
@@ -637,7 +635,7 @@ static void UpdateSeq(const ReceivedDataEvent seqid, int32_t val)
 			{
 				dbg("%s %d -> %d\n", seqs[i].key, seqs[i].lastSeq, val);
 				seqs[i].lastSeq = val;
-				seqs[i].state = SeqStateUpdate;
+				seqs[i].state = Seq::State::Update;
 			}
 		}
 	}
@@ -648,7 +646,7 @@ static void ResetSeqs()
 	for (size_t i = 0; i < ARRAY_SIZE(seqs); ++i)
 	{
 		seqs[i].lastSeq = 0;
-		seqs[i].state = SeqStateInit;
+		seqs[i].state = Seq::State::Init;
 	}
 }
 
@@ -1040,7 +1038,7 @@ static void EndReceivedMessage()
 
 	if (currentRespSeq != nullptr)
 	{
-		currentRespSeq->state = outOfBuffers ? SeqStateError : SeqStateOk;
+		currentRespSeq->state = outOfBuffers ? Seq::State::Error : Seq::State::Ok;
 		dbg("seq %s %d DONE\n", currentRespSeq->key, currentRespSeq->state);
 		currentRespSeq = nullptr;
 	}
@@ -2266,7 +2264,7 @@ static void ParserErrorEncountered(int currentState, const char*, int errors)
 		return;
 	}
 
-	currentRespSeq->state = SeqStateError;
+	currentRespSeq->state = Seq::State::Error;
 }
 
 // Update those fields that display debug information
