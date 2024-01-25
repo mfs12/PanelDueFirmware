@@ -13,29 +13,14 @@ extern "C"
 #define DEBUG 0
 #include "Debug.hpp"
 
-bool ThumbnailIsValid(struct Thumbnail &thumbnail)
+bool Thumbnail::IsValid()
 {
-	if (thumbnail.imageFormat != Thumbnail::ImageFormat::Qoi)
+	if (imageFormat != ImageFormat::Qoi)
 	{
 		return false;
 	}
 
-	if (thumbnail.height == 0 || thumbnail.width == 0)
-	{
-		return false;
-	}
-
-	return true;
-}
-
-bool ThumbnailDataIsValid(struct ThumbnailData &data)
-{
-	if (data.size == 0)
-	{
-		return false;
-	}
-
-	if (!data.buffer)
+	if (height == 0 || width == 0)
 	{
 		return false;
 	}
@@ -43,25 +28,40 @@ bool ThumbnailDataIsValid(struct ThumbnailData &data)
 	return true;
 }
 
-int ThumbnailInit(struct Thumbnail &thumbnail)
+bool ThumbnailData::IsValid()
 {
-	thumbnail.width = 0;
-	thumbnail.height = 0;
-	thumbnail.pixel_count = 0;
-	thumbnail.imageFormat = Thumbnail::ImageFormat::Invalid;
+	if (size == 0)
+	{
+		return false;
+	}
 
-	return qoi_decode_init(&thumbnail.qoi);
+	if (!buffer)
+	{
+		return false;
+	}
+
+	return true;
 }
 
-int ThumbnailDecodeChunk(struct Thumbnail &thumbnail, struct ThumbnailData &data, ThumbnailProcessCb callback)
+int Thumbnail::Init()
 {
-	if (!ThumbnailIsValid(thumbnail))
+	width = 0;
+	height = 0;
+	pixel_count = 0;
+	imageFormat = ImageFormat::Invalid;
+
+	return qoi_decode_init(&qoi);
+}
+
+int Thumbnail::DecodeChunk(struct ThumbnailData &data, ThumbnailProcessCb callback)
+{
+	if (!IsValid())
 	{
 		dbg("meta invalid.\n");
 		return -1;
 	}
 
-	if (!ThumbnailDataIsValid(data))
+	if (!data.IsValid())
 	{
 		dbg("data invalid.\n");
 		return -2;
@@ -87,15 +87,15 @@ int ThumbnailDecodeChunk(struct Thumbnail &thumbnail, struct ThumbnailData &data
 	{
 		dbg("buffer %08x size %d/%d pixbuf %08x pixbuf size %d decoded %08x\n",
 			data.buffer, data.size, size_done, rgba_buffer, &pixel_decoded);
-		ret = qoi_decode_chunked(&thumbnail.qoi, (data.buffer) + size_done, data.size - size_done, rgba_buffer, sizeof(rgba_buffer), &pixel_decoded);
+		ret = qoi_decode_chunked(&qoi, (data.buffer) + size_done, data.size - size_done, rgba_buffer, sizeof(rgba_buffer), &pixel_decoded);
 		if (ret < 0)
 		{
-			dbg("failed qoi decoding state %d %d.\n", qoi_decode_state_get(&thumbnail.qoi), ret);
+			dbg("failed qoi decoding state %d %d.\n", qoi_decode_state_get(&qoi), ret);
 			return -4;
 		}
 
-		if (thumbnail.qoi.height != thumbnail.height ||
-		    thumbnail.qoi.width != thumbnail.width)
+		if (qoi.height != height ||
+		    qoi.width != width)
 		{
 			return -5;
 		}
@@ -105,22 +105,22 @@ int ThumbnailDecodeChunk(struct Thumbnail &thumbnail, struct ThumbnailData &data
 		if (callback)
 		{
 			//dbg("calling callback\n");
-			bool cont = callback(thumbnail, thumbnail.pixel_count, rgba_buffer, pixel_decoded);
+			bool cont = callback(*this, pixel_count, rgba_buffer, pixel_decoded);
 			if (!cont)
 				return -6;
 		}
 
-		thumbnail.pixel_count += pixel_decoded;
+		pixel_count += pixel_decoded;
 
 		dbg("ret %d done %d/%d decoded %d missing %d(%02x) count %d/%d/%d\n",
-			ret, size_done, data.size, pixel_decoded, thumbnail.qoi.last_bytes_size, thumbnail.qoi.last_bytes[0] & 0xc0,
-			thumbnail.qoi.pixels_count, thumbnail.pixel_count, thumbnail.height * thumbnail.width);
+			ret, size_done, data.size, pixel_decoded, qoi.last_bytes_size, qoi.last_bytes[0] & 0xc0,
+			qoi.pixels_count, pixel_count, height * width);
 
 
-	} while (size_done < data.size && qoi_decode_state_get(&thumbnail.qoi) == qoi_decoder_body);
+	} while (size_done < data.size && qoi_decode_state_get(&qoi) == qoi_decoder_body);
 
 	dbg("done %d/%d pixels %d/%d\n",
-		size_done, data.size, thumbnail.pixel_count, thumbnail.height * thumbnail.width);
+		size_done, data.size, pixel_count, height * width);
 
-	return qoi_decode_state_get(&thumbnail.qoi) != qoi_decoder_done;
+	return qoi_decode_state_get(&qoi) != qoi_decoder_done;
 }
